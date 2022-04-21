@@ -2970,7 +2970,7 @@ div {
       height: 0;
       overflow: hidden; }
     #header .site-name #logo {
-      font: bold 40px/1.12  Amstelvar, "Noto Serif SC", Georgia, Times, sans-serif;
+      font: bold 40px/1.12  Amstelvar, "Times New Roman", "Noto Serif SC", Georgia, Times, sans-serif;
       color: var(--color-contrast-higher);
       text-shadow: #b8b8b8 0.1em 0.1em 0.2em; }
       #header .site-name #logo span, #header .site-name #logo:hover {
@@ -3198,7 +3198,7 @@ div {
         margin-top: 2.2px;
         padding: 0px 5px;
         background: #f6f6f6;
-        font-family: Menlo, Consolas, monospace !important;
+        font-family: "Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
         color: #0085a1; }
       .post .post-content p a {
         font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
