@@ -2970,7 +2970,7 @@ div {
       height: 0;
       overflow: hidden; }
     #header .site-name #logo {
-      font: bold 50px/1.12 "PingFangSC-Regular","Times New Roman", "Noto Serif SC", "WenQuanYi Micro Hei",Georgia, Times, sans-serif;
+      font: bold 48px/1.12 "PingFangSC-Regular","Times New Roman", "Noto Serif SC", "WenQuanYi Micro Hei",Georgia, Times, sans-serif;
       color: var(--color-contrast-higher);
       text-shadow: #b8b8b8 0.1em 0.1em 0.2em; }
       #header .site-name #logo span, #header .site-name #logo:hover {
@@ -3201,8 +3201,8 @@ div {
         font-family: "Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
         color: #0085a1; }
       .post .post-content p a {
-        font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
-        color: #01579f;
+        font-family: "Source Code Pro","Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
+        color: #8696a7;
         padding-bottom: 2px;
         word-break: normal; }
         .post .post-content p a:hover {
