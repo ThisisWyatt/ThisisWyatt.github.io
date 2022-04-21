@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Docker command | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.1"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><script async src="https://www.googletagmanager.com/gtag/js?id=null"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Docker command</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">Docker command</h1><div class="post-meta">March 6, 2021</div><div class="post-content"><h2 id="一、Docker的基本使用和管理"><a href="#一、Docker的基本使用和管理" class="headerlink" title="一、Docker的基本使用和管理"></a>一、Docker的基本使用和管理</h2><h3 id="1-Docker配置"><a href="#1-Docker配置" class="headerlink" title="1. Docker配置"></a>1. Docker配置</h3><ul>
+<li>centos安装docker <code>yum install docker</code></li>
+<li>设置普通用户使用docker<ul>
+<li>创建<code>docker</code>用户组 <code>groupadd docker</code></li>
+<li>添加用户到<code>docker</code>用户组 <code>usermod -a -G docker userName</code></li>
+<li>重启docker <code>systemctl restart docker</code></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<p>&#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime</p>
+<h3 id="2-Docker镜像操作"><a href="#2-Docker镜像操作" class="headerlink" title="2. Docker镜像操作"></a>2. Docker镜像操作</h3><ul>
+<li>搜索镜像 <code>docker search keyword</code></li>
+<li>获取镜像 <code>docker pull imageName</code></li>
+<li>查看镜像信息 <code>docker iamges</code><ul>
+<li>REPOSITORY：镜像所属的仓库</li>
+<li>TAG：镜像的标签信息，用于标记同一仓库的不同镜像<blockquote>
+<p>为了后续工作中方便使用镜像，可以使用<code>docker tag 名称:[标签] 新名称:[新标签]</code></p>
+</blockquote>
+</li>
+<li>IMAGE ID：镜像的唯一ID号<blockquote>
+<p>可通过ID号来获取对应镜像信息：<code>docker inspect id</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>删除镜像 <code>docker rmi 仓库名称:标签 | ID号</code></li>
+<li>存出镜像 <code>docker save -o 存出文件名 存出的镜像</code></li>
+<li>载入镜像 <code>docker load &lt; | -i 目标镜像文件</code></li>
+<li>上传镜像 <ul>
+<li>打上私有的标签 <code>docker tag 名称:[标签] 新名称:[新标签]</code></li>
+<li>上传 <code>docker push 仓库名称:标签</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Docker容器操作"><a href="#3-Docker容器操作" class="headerlink" title="3. Docker容器操作"></a>3. Docker容器操作</h3><ul>
+<li>创建 <code>docker create [OPTIONS] 镜像 运行的程序</code><blockquote>
+<p><code>docker crate -it hivemq/hivemq4 /bin/bash</code></p>
+</blockquote>
+<ul>
+<li>-i：让容器的输入保持打开状态</li>
+<li>-t：让Docker分配一个伪终端</li>
+</ul>
+</li>
+<li>查看容器运行状态 <code>docker ps -a</code></li>
+<li>启动容器 <code>docker start 容器ID | 名称</code></li>
+<li>创建并运行容器 <code>docker [OPTIONS] run 仓库名称:标签</code><ul>
+<li>-d 后台运行</li>
+<li>–name：自定义一个名称</li>
+<li>-p：指定端口映射，指定容器端口映射到主机端口，<code>主机端口:容器端口</code></li>
+<li>-P：随机端口映射，容器内部端口映射到主机的一个随机端口</li>
+<li>-e：设置相关环境变量</li>
+<li>TZ:设置容器内时区，例如<code>TZ=&quot;Asia/Shanghai&quot;</code></li>
+<li>-v：设置数据卷       <ul>
+<li>创建数据卷：<code>-v 目录</code></li>
+<li>创建数据卷并挂载到主机目录： <code>-v 宿主机目录:容器数据卷目录</code></li>
+<li>挂载数据卷容器：<code>--volumes-from 容器名</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>容器的进入 <code>docker exec -it 容器ID | 名称 /bin/bash</code><blockquote>
+<p>容器是一个与其中运行的shell命令共存亡的众安，shell命令运行则容器运行，shell命令停止则容器停止，使用exit命令会在退出容器的同时关闭容器（但可以docker ps、docker restart恢复），所以使用<code>ctrl+P &amp; ctrl + Q</code>可以退出容器</p>
+</blockquote>
+</li>
+<li>容器终止运行 <code>docker stop 容器ID | 名称</code></li>
+<li>容器导出 <code>docker export 容器ID | 名称 &gt; 文件名</code></li>
+<li>容器导入 <code>cat 文件名 | docker import - 生成镜像名称:标签</code></li>
+<li>容器的删除 <code>docker rm 容器ID | 名称</code></li>
+</ul>
+<p><br><br></p>
+<hr>
+<p><br><br></p>
+<h2 id="二、Docker镜像管理"><a href="#二、Docker镜像管理" class="headerlink" title="二、Docker镜像管理"></a>二、Docker镜像管理</h2><h3 id="2-1-Docker的镜像结构"><a href="#2-1-Docker的镜像结构" class="headerlink" title="2.1 Docker的镜像结构"></a>2.1 Docker的镜像结构</h3><p>镜像不是一个单一的文件，而是由多层构成的。可以由<code>docker history</code>命令来查看镜像中各层的内容及大小，<strong>每一层对应着Dockerfile中的一条指令</strong>，并且有如下特点：    </p>
+<ul>
+<li>Dockerfile中的每个指令都会创建一个新的镜像层</li>
+<li>镜像层可以被缓存和复用</li>
+<li>当Dockerfile的指令修改了，复制的文件变化了，或者构建镜像时指定的变量灵不同了，对应的镜像层缓存就会失效</li>
+<li>当某一层的镜像缓存失效，它之后的镜像层缓存都会失效</li>
+<li>镜像层是不可变的，如果在某一层添加一个文件，然后在下一层删除它，则镜像中依然会包含该文件，只是这个文件在Docker容器中不可见了。</li>
+</ul>
+<br>
+<br>
+<br></div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.1"><p><span>发布时间: </span>2021-03-20  11:54:34</p><p><span>更新时间: </span>2022-04-21  16:22:38</p><p><span>本文链接: </span><a href="/posts/Tools/8f5fd259.html">https://wyatt.ink/posts/Tools/8f5fd259.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Tools/8f5fd259.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Cloud/">Cloud</a></div><div class="post-nav"><a class="pre" href="/posts/Code/1a4a828a.html">Spring Boot文件上传</a><a class="next" href="/posts/Code/f135954a.html">数组复制</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E7%AE%A1%E7%90%86"><span class="toc-text">一、Docker的基本使用和管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Docker%E9%85%8D%E7%BD%AE"><span class="toc-text">1. Docker配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Docker%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C"><span class="toc-text">2. Docker镜像操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Docker%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">3. Docker容器操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Docker%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86"><span class="toc-text">二、Docker镜像管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Docker%E7%9A%84%E9%95%9C%E5%83%8F%E7%BB%93%E6%9E%84"><span class="toc-text">2.1 Docker的镜像结构</span></a></li></ol></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.1" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.1" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.1"><script type="text/javascript" src="/js/search.js?v=1.0.1"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.1"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.1"></script><script type="text/javascript" src="/js/toc.js?v=1.0.1" async></script></div></body></html>
