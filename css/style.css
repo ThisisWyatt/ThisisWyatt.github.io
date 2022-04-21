@@ -2926,6 +2926,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px; }
+  body ::marker {
+    margin-right: auto;
+    content: "- "; }
 
 .body_container {
   padding: 0 60px;
@@ -2956,6 +2959,11 @@ a:active {
 
 div {
   box-sizing: border-box; }
+
+b, strong {
+  font-weight: 500;
+  text-emphasis-position: under right !important;
+  text-emphasis: '•'; }
 
 #header {
   padding: 58px 0 0;
@@ -3055,6 +3063,9 @@ div {
       #sidebar .widget ul li {
         margin: 5px 0;
         line-height: 1.5; }
+      #sidebar .widget ul ::marker {
+        margin-left: auto;
+        content: ""; }
     #sidebar .widget .category-list-count {
       padding-left: 5px;
       color: #949494; }
@@ -3369,6 +3380,9 @@ div {
     color: #333 !important; }
   .post-archive .date {
     padding-right: .7em; }
+  .post-archive ::marker {
+    margin-left: auto;
+    content: ""; }
 
 /* for archive page ends*/
 /* middle*/
@@ -4634,12 +4648,16 @@ html[data-dark='true'] {
     #stoc .toc li {
       font-family: "Noto Serif SC","Amstelvar","PingFangSC-Regular","FontAwesome";
       list-style-type: none; }
+    #stoc .toc ::marker {
+      margin-left: auto;
+      content: ""; }
   #stoc .toc-child {
     margin-left: 1em;
     padding-left: 0; }
 
 .fa-blind {
-  font-size: 20px !important; }
+  font-size: 20px !important;
+  text-emphasis: ''; }
 
 .out-img-topic {
   clear: left;
