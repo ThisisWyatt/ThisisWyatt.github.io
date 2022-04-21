@@ -2977,7 +2977,7 @@ div {
         color: #777; }
     #header .site-name .description {
       margin: 8px 0 0;
-      color: #b5c4b1;
+      color: #e0e5df;
       font-family: "Cinzel Decorative","Noto Serif SC", Georgia, Times, sans-serif; }
   #header #nav-menu {
     margin: 10px 0 -1px;
@@ -3273,6 +3273,8 @@ div {
         font-weight: bold;
         color: #555; }
       .post .post-content .one-tag-list a {
+        line-height: 1.8;
+        margin-left: 19px;
         color: #555 !important; }
         .post .post-content .one-tag-list a:hover {
           color: #949494 !important; }
