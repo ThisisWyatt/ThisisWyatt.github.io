@@ -2928,6 +2928,7 @@ body {
   font-size: 14px; }
   body ::marker {
     margin-right: auto;
+    font-weight: bold;
     content: "- "; }
 
 .body_container {
@@ -3129,7 +3130,7 @@ b, strong {
     float: left;
     display: inline;
     text-indent: .15em;
-    font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular","FontAwesome"; }
+    font-family: "Noto Serif SC","PingFangSC-Regular","FontAwesome"; }
     .post .post-meta:before {
       content: "\f073";
       padding-right: 0.3em; }
@@ -3210,7 +3211,8 @@ b, strong {
         padding: 0px 5px;
         background: #f6f6f6;
         font-family: "Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
-        color: #0085a1; }
+        color: #0085a1;
+        text-emphasis: '' !important; }
       .post .post-content p a {
         font-family: "Source Code Pro","Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
         color: #8696a7;
