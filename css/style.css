@@ -13,6 +13,7 @@ with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
 specific font stacks to ensure the greatest OS/browser compatibility.
 */
 /* latin */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 @font-face {
   font-family: 'Cinzel Decorative';
   font-style: normal;
@@ -3210,7 +3211,10 @@ b, strong {
         margin-top: 2.2px;
         padding: 0px 5px;
         background: #f6f6f6;
-        font-family: "Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
+        font-family: "JetBrains Mono","Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 1.25px;
         color: #0085a1;
         text-emphasis: '' !important; }
       .post .post-content p a {
@@ -3254,7 +3258,10 @@ b, strong {
         margin-top: 2.2px;
         padding: 0px 5px;
         background: #f6f6f6;
-        font-family: "glyph-correction","Source Code Pro","Noto Serif SC",monospace, Menlo, Consolas, monospace !important;
+        font-family: "JetBrains Mono","glyph-correction","Source Code Pro","Noto Serif SC",monospace, Menlo, Consolas, monospace !important;
+        font-weight: 400;
+        letter-spacing: 1.25px;
+        font-size: 15px;
         color: #0085a1; }
       .post .post-content ul a,
       .post .post-content ol a {
@@ -3381,7 +3388,8 @@ b, strong {
     font: bold 30px / 1.1 'Cinzel Decorative',"Amstelvar","Noto Serif SC","PingFangSC-Regular","Times New Roman", Georgia, Times, sans-serif;
     color: #333 !important; }
   .post-archive .date {
-    padding-right: .7em; }
+    padding-right: .7em;
+    font: 600 16px / 1.1 "Noto Serif SC","PingFangSC-Regular","Times New Roman", Georgia, Times, sans-serif; }
   .post-archive ::marker {
     margin-left: auto;
     content: ""; }
@@ -3805,7 +3813,9 @@ figure.highlight,
   background: #f7f8f8;
   margin: 10px 0;
   line-height: 1.1em;
-  color: #333;
+  font-weight: 400;
+  color: #484848;
+  letter-spacing: 1.25px;
   padding-top: 15px;
   overflow: hidden; }
   figure.highlight table,
@@ -3821,7 +3831,8 @@ figure.highlight,
   .codeblock .code,
   .codeblock .tag {
     background-color: inherit;
-    font-family: "glyph-correction","Source Code Pro","Noto Serif SC",monospace;
+    font-size: 15px;
+    font-family: "JetBrains Mono","Source Code Pro","Noto Serif SC",monospace;
     border: none;
     padding: 0;
     margin: 0;
