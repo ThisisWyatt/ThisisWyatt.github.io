@@ -2927,10 +2927,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px; }
-  body ::marker {
-    margin-right: auto;
-    font-weight: bold;
-    content: "- "; }
 
 .body_container {
   padding: 0 60px;
@@ -3199,6 +3195,10 @@ b, strong {
       line-height: 1.4; }
     .post .post-content pre code {
       padding: 0 2em; }
+    .post .post-content ::marker {
+      margin-right: auto;
+      font-weight: bold;
+      content: "- "; }
     .post .post-content p {
       margin: 0 0 1.234em;
       word-break: break-word;
@@ -3261,7 +3261,7 @@ b, strong {
         font-family: "JetBrains Mono","glyph-correction","Source Code Pro","Noto Serif SC",monospace, Menlo, Consolas, monospace !important;
         font-weight: 400;
         letter-spacing: 1.25px;
-        font-size: 15px;
+        font-size: 14px;
         color: #0085a1; }
       .post .post-content ul a,
       .post .post-content ol a {
