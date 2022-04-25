@@ -2920,6 +2920,11 @@ textarea,
 input {
   font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif; }
 
+.reference::before {
+  content: "➱";
+  margin-right: 5px;
+  color: #222; }
+
 body {
   background-color: #FFF;
   color: #333;
