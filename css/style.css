@@ -3098,6 +3098,10 @@ b, strong {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none; }
+        #sidebar .widget .search-form input:hover {
+          border-style: solid;
+          border-color: #aaa;
+          box-shadow: 1px 1px 5px #b9b9b9; }
 
 /* title for search result or tagged posts*/
 .label-title {
@@ -3262,7 +3266,7 @@ b, strong {
         font-weight: 400;
         letter-spacing: 1.25px;
         font-size: 14px;
-        color: #0085a1; }
+        color: #0a7086; }
       .post .post-content ul a,
       .post .post-content ol a {
         color: #01579f;
