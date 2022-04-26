@@ -2965,13 +2965,17 @@ div {
 
 #tagTitle::before {
   content: '\f02c';
-  margin-right: 12px;
-  color: #444; }
+  margin-right: 5px;
+  color: var(--color-contrast-high);
+  font-size: 16px;
+  font-family: FontAwesome !important; }
   #tagTitle::before:hover {
     color: #777 !important; }
 
 #tagTitle {
-  color: #444; }
+  color: var(--color-contrast-high);
+  font-size: 16px;
+  font-weight: 520 !important; }
   #tagTitle:hover {
     color: #777 !important; }
 
