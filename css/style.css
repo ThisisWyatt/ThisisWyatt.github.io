@@ -3059,7 +3059,7 @@ b, strong {
       font-weight: normal; }
     #sidebar .widget .tagcloud {
       margin-top: 22px;
-      width: 104%; }
+      width: 100%; }
       #sidebar .widget .tagcloud a {
         display: inline-block;
         border: 1px solid #aaa;
