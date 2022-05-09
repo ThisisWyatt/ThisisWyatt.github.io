@@ -17,44 +17,51 @@
 /* Pretty printing styles. Used with prettify.js. */
 /* SPAN elements with the classes below are added by prettyprint. */
 .pln {
-  color: #555; }
+  color: #4d4d4c; }
 
-/* plain text */
 @media screen {
-  .str {
-    color: #080; }
   /* string content */
+  .str {
+    color: #718c00; }
+  /* keyword */
   .kwd {
-    color: #008; }
-  /* a keyword */
+    color: #8959a8; }
+  /* comment */
   .com {
-    color: #800; }
-  /* a comment */
+    color: #8e908c; }
+  /* type name */
   .typ {
-    color: #606; }
-  /* a type name */
-  /* .lit { color: #066 }  a literal value */
+    color: #4271ae; }
+  /* literal value */
   .lit {
-    color: #484848; }
-  /* a literal value */
-  /* punctuation, lisp open bracket, lisp close bracket */
-  .pun, .opn, .clo {
-    color: #660; }
+    color: #f5871f; }
+  /* punctuation */
+  .pun {
+    color: #4d4d4c; }
+  /* lisp open bracket */
+  .opn {
+    color: #4d4d4c; }
+  /* lisp close bracket */
+  .clo {
+    color: #4d4d4c; }
+  /* markup tag name */
   .tag {
-    color: #008; }
-  /* a markup tag name */
+    color: #c82829; }
+  /* markup attribute name */
   .atn {
-    color: #606; }
-  /* a markup attribute name */
+    color: #f5871f; }
+  /* markup attribute value */
   .atv {
-    color: #080; }
-  /* a markup attribute value */
-  .dec, .var {
-    color: #606; }
-  /* a declaration; a variable name */
+    color: #3e999f; }
+  /* declaration */
+  .dec {
+    color: #f5871f; }
+  /* variable name */
+  .var {
+    color: #c82829; }
+  /* function name */
   .fun {
-    color: red; }
-  /* a function name */ }
+    color: #4271ae; } }
 
 /* Use higher contrast and text-weight for printable form. */
 @media print, projection {
