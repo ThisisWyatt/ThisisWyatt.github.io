@@ -2904,10 +2904,6 @@ specific font stacks to ensure the greatest OS/browser compatibility.
   font-family: Amstelvar;
   src: url(../font/Amstelvar-Roman[GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,wdth\,wght\,opsz].ttf); }
 
-@font-face {
-  font-family: glyph-correction;
-  src: url(../font/glyph-correction.ttf); }
-
 html,
 select,
 button,
