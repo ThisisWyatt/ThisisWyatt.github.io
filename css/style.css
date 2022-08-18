@@ -111,8 +111,7 @@ div {
 
 b, strong {
   font-weight: 500;
-  text-emphasis-position: under right !important;
-  text-emphasis: ''; }
+  text-emphasis-position: under right !important; }
 
 #header {
   padding: 58px 0 0;
@@ -265,7 +264,7 @@ b, strong {
         background-color: transparent;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); }
       #sidebar .widget .author-info a.info-icon {
-        font-size: 22px; }
+        font-size: 25px; }
 
 .fa-envelope-square::before {
   content: "\f199";
