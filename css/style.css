@@ -31,10 +31,6 @@ specific font stacks to ensure the greatest OS/browser compatibility.
   font-display: swap;
   src: url(https://fonts.gstatic.com/l/font?kit=S6u9w4BMUTPHh6UVewqFHi_o39tQh4Ytrrc&skey=3480a19627739c0d&v=v22) format("woff2"); }
 
-@font-face {
-  font-family: Amstelvar;
-  src: url(../font/Amstelvar-Roman[GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,wdth\,wght\,opsz].ttf); }
-
 html,
 select,
 button,
