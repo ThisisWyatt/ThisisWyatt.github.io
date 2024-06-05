@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Linux命令 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.1"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><script async src="https://www.googletagmanager.com/gtag/js?id=null"></script><script>window.dataLayer = window.dataLayer || [];
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Linux命令 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.1"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><script async src="https://www.googletagmanager.com/gtag/js?id=null"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
@@ -58,11 +58,16 @@ gtag('config', '');
 <p>r : 可读<br>w : 修改、删除<br>x : execute可执行</p>
 </blockquote>
 <ul>
-<li>author限制可读 <code>chmod u-r file.txt</code></li>
-<li>author增加可读 <code>chmod u+r file.txt</code></li>
-<li>group、other限制读<code>chmod go-r file.txt</code></li>
-<li>为所有用户增加可读 <code>chmod a-r file.txt</code></li>
-<li>为所有用户添加所有权限 <code>chmod 777 file.txt</code><blockquote>
+<li><p>author限制可读 <code>chmod u-r file.txt</code></p>
+</li>
+<li><p>author增加可读 <code>chmod u+r file.txt</code></p>
+</li>
+<li><p>group、other限制读<code>chmod go-r file.txt</code></p>
+</li>
+<li><p>为所有用户增加可读 <code>chmod a-r file.txt</code></p>
+</li>
+<li><p>为所有用户添加所有权限 <code>chmod 777 file.txt</code></p>
+<blockquote>
 <p><code>rwx rwx rwx</code>二进制 <code>111 111 111</code>, 可利用二进制添加相应的权限</p>
 </blockquote>
 </li>
@@ -96,17 +101,21 @@ gtag('config', '');
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://www.linuxprobe.com/linux-cat-system.html">查看系统信息</a></p>
 <ul>
-<li>lsb_release -a <blockquote>
+<li><p>lsb_release -a </p>
+<blockquote>
 <p>Linux Standard Base</p>
 </blockquote>
 </li>
-<li>cat &#x2F;etc&#x2F;os-release</li>
+<li><p>cat &#x2F;etc&#x2F;os-release</p>
+</li>
 </ul>
 </li>
 <li><p>[查看是否安装某个软件]</p>
 <ul>
-<li>Ubuntu <code>dpkg -s &quot;软件或包的名字&quot;</code></li>
-<li>CentOS <code>rpm -qa | grep &quot;软件或者包的名字&quot;</code><blockquote>
+<li><p>Ubuntu <code>dpkg -s &quot;软件或包的名字&quot;</code></p>
+</li>
+<li><p>CentOS <code>rpm -qa | grep &quot;软件或者包的名字&quot;</code></p>
+<blockquote>
 <p><code>rpm: redhat package manager; -q: query; a: all</code></p>
 </blockquote>
 </li>
@@ -114,29 +123,41 @@ gtag('config', '');
 </li>
 <li><p>查看网络活动相关信息</p>
 <ul>
-<li><code>netstat -nptl</code> <blockquote>
-<p>connetction、tcp、programs、listening </p>
+<li><p><code>netstat -nptl</code> </p>
+<blockquote>
+<p>connetction、tcp、programs、listening</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@cloudr etc]# netstat -h</span><br><span class="line">      -r, --route              display routing table</span><br><span class="line">      -I, --interfaces=&lt;Iface&gt; display interface table for &lt;Iface&gt;</span><br><span class="line">      -i, --interfaces         display interface table</span><br><span class="line">      -s, --statistics         display networking statistics (like SNMP)</span><br><span class="line">      -M, --masquerade         display masqueraded connections</span><br><span class="line"></span><br><span class="line">      -v, --verbose            be verbose //详细的</span><br><span class="line">      -e, --extend             display other/more information</span><br><span class="line">      -p, --programs           display PID/Program name for sockets	//PID、程序名</span><br><span class="line">      -o, --timers             display timers</span><br><span class="line">      -c, --continuous         continuous listing</span><br><span class="line"></span><br><span class="line">      -l, --listening          display listening server sockets //监听中的套接口</span><br><span class="line">      -a, --all                display all sockets (default: connected)</span><br><span class="line">      -F, --fib                display Forwarding Information Base (default)</span><br><span class="line">      -C, --cache              display routing cache instead of FIB</span><br><span class="line">      -Z, --context            display SELinux security context for sockets</span><br><span class="line"></span><br><span class="line">-t, --tcp	//tcp相关</span><br><span class="line">-u, --udp	//udp相关</span><br><span class="line">-U, --udplite</span><br><span class="line">-w, --raw 	//原始</span><br><span class="line">-x, --unix	//unix相关</span><br></pre></td></tr></table></figure></li>
-</ul>
 </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  	[root@cloudr etc]# netstat -h</span><br><span class="line">      -r, --route              display routing table</span><br><span class="line">      -I, --interfaces=&lt;Iface&gt; display interface table for &lt;Iface&gt;</span><br><span class="line">      -i, --interfaces         display interface table</span><br><span class="line">      -s, --statistics         display networking statistics (like SNMP)</span><br><span class="line">   -M, --masquerade         display masqueraded connections</span><br><span class="line">  </span><br><span class="line">      -v, --verbose            be verbose //详细的</span><br><span class="line">      -e, --extend             display other/more information</span><br><span class="line">      -p, --programs           display PID/Program name for sockets	//PID、程序名</span><br><span class="line">      -o, --timers             display timers</span><br><span class="line">   -c, --continuous         continuous listing</span><br><span class="line">  </span><br><span class="line">      -l, --listening          display listening server sockets //监听中的套接口</span><br><span class="line">      -a, --all                display all sockets (default: connected)</span><br><span class="line">      -F, --fib                display Forwarding Information Base (default)</span><br><span class="line">      -C, --cache              display routing cache instead of FIB</span><br><span class="line">   -Z, --context            display SELinux security context for sockets</span><br><span class="line">	</span><br><span class="line">-t, --tcp	//tcp相关</span><br><span class="line">-u, --udp	//udp相关</span><br><span class="line">-U, --udplite</span><br><span class="line">-w, --raw 	//原始</span><br><span class="line">-x, --unix	//unix相关</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="2-用户和工作组管理类命令"><a href="#2-用户和工作组管理类命令" class="headerlink" title="2.用户和工作组管理类命令"></a>2.用户和工作组管理类命令</h2><h3 id="2-1-查看用户"><a href="#2-1-查看用户" class="headerlink" title="2.1 查看用户"></a>2.1 查看用户</h3><ul>
-<li>查看用户信息命令 <code>id</code></li>
-<li>显示用户名称命令 <code>logname</code></li>
-<li>查看用户操作命令 <code>history</code><ul>
+<li><p>查看用户信息命令 <code>id</code></p>
+</li>
+<li><p>显示用户名称命令 <code>logname</code></p>
+</li>
+<li><p>查看用户操作命令 <code>history</code></p>
+<ul>
 <li>执行第几条命令 <code>!数字</code></li>
 </ul>
 </li>
-<li>查看用户所属用户组 <code>groups</code><h3 id="2-2-用户组管理"><a href="#2-2-用户组管理" class="headerlink" title="2.2 用户组管理"></a>2.2 用户组管理</h3></li>
-<li>查看所有用户组命令 <code>cat /etc/group</code></li>
-<li>创建一个用户组命令 <code>groupadd 用户组名</code> </li>
-<li>删除一个用户组命令 <code>groupdel 用户名</code></li>
-<li>更改用户组名命令 <code>groupmod 新用户组名 旧用户组名</code></li>
-<li>添加用户到用户组 <code>usermode -a -G groupName userName</code><blockquote>
+<li><p>查看用户所属用户组 <code>groups</code></p>
+<h3 id="2-2-用户组管理"><a href="#2-2-用户组管理" class="headerlink" title="2.2 用户组管理"></a>2.2 用户组管理</h3></li>
+<li><p>查看所有用户组命令 <code>cat /etc/group</code></p>
+</li>
+<li><p>创建一个用户组命令 <code>groupadd 用户组名</code> </p>
+</li>
+<li><p>删除一个用户组命令 <code>groupdel 用户名</code></p>
+</li>
+<li><p>更改用户组名命令 <code>groupmod 新用户组名 旧用户组名</code></p>
+</li>
+<li><p>添加用户到用户组 <code>usermod -a -G groupName userName</code></p>
+<blockquote>
 <p>-a : appened，不能直接-G，否则会离开原有用户组</p>
 </blockquote>
-<h3 id="2-3-用户管理"><a href="#2-3-用户管理" class="headerlink" title="2.3 用户管理"></a>2.3 用户管理</h3></li>
+</li>
+</ul>
+<h3 id="2-3-用户管理"><a href="#2-3-用户管理" class="headerlink" title="2.3 用户管理"></a>2.3 用户管理</h3><ul>
 <li>查看当前登录用户名命令 <code>w、who、users、whoami</code></li>
 <li>切换用户 <code>su [选项] 目标用户</code></li>
 <li>新增用户账号 <code>useradd 用户名</code></li>
@@ -229,7 +250,7 @@ gtag('config', '');
 </li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>➱ <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zox2011/archive/2013/05/28/3103824.html">https://www.cnblogs.com/zox2011/archive/2013/05/28/3103824.html</a></p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.1"><p><span>发布时间: </span>2020-11-24  23:04:33</p><p><span>更新时间: </span>2022-04-25  15:45:56</p><p><span>本文链接: </span><a href="/posts/Code/82734d8.html">https://wyatt.ink/posts/Code/82734d8.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/82734d8.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a class="pre" href="/posts/Tools/341ecd43.html">Git</a><a class="next" href="/posts/Code/161dcf21.html">生产者消费者模型</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">1.使用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%A8%E6%88%B7%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%BB%84%E7%AE%A1%E7%90%86%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-text">2.用户和工作组管理类命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7"><span class="toc-text">2.1 查看用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">2.2 用户组管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">2.3 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text">2.4 用户权限管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.1" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.1" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.1"><script type="text/javascript" src="/js/search.js?v=1.0.1"></script><script>var search_path = 'search.xml';
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.1"><p><span>发布时间: </span>2020-11-24  23:04:33</p><p><span>更新时间: </span>2022-05-23  9:20:25</p><p><span>本文链接: </span><a href="/posts/Code/82734d8.html">https://wyatt.ink/posts/Code/82734d8.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/82734d8.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a class="pre" href="/posts/Tools/341ecd43.html">Git</a><a class="next" href="/posts/Code/161dcf21.html">生产者消费者模型</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">1.使用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%A8%E6%88%B7%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%BB%84%E7%AE%A1%E7%90%86%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-text">2.用户和工作组管理类命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7"><span class="toc-text">2.1 查看用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">2.2 用户组管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">2.3 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text">2.4 用户权限管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.1" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.1" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.1"><script type="text/javascript" src="/js/search.js?v=1.0.1"></script><script>var search_path = 'search.xml';
 if (search_path.length == 0) {
   search_path = 'search.xml';
 }
