@@ -39,10 +39,10 @@ textarea,
 .MJXc-TeX-unknown-R,
 .pure-g [class*="pure-u"] {
   /* Set your content font stack here: */
-  font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif !important; }
+  font-family: "Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif !important; }
 
 input {
-  font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif; }
+  font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif; }
 
 .reference::before {
   content: "➱";
@@ -123,7 +123,7 @@ b, strong {
       height: 0;
       overflow: hidden; }
     #header .site-name #logo {
-      font: bold 78px/1.12 "East Sea Dokdo","Times New Roman", "Noto Serif SC", "PingFangSC-Regular",'Amstelvar',"WenQuanYi Micro Hei",Georgia, Times, sans-serif;
+      font: bold 78px/1.12 "East Sea Dokdo","Times New Roman", "Noto Serif SC", "PingFangSC-Regular","WenQuanYi Micro Hei",Georgia, Times, sans-serif;
       color: var(--color-contrast-higher);
       text-shadow: #b8b8b8 0.1em 0.1em 0.2em; }
       #header .site-name #logo span, #header .site-name #logo:hover {
@@ -138,13 +138,13 @@ b, strong {
     position: absolute;
     right: 0;
     bottom: 0;
-    font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif; }
+    font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif; }
     #header #nav-menu a {
       display: inline-block;
       padding: 3px 20px 3px;
       line-height: 30px;
       color: #444;
-      font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif;
+      font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif;
       font-size: 13px;
       border: 1px solid transparent; }
       #header #nav-menu a:hover {
@@ -152,7 +152,7 @@ b, strong {
       #header #nav-menu a.current {
         border: 1px solid #ddd;
         border-bottom-color: #fff;
-        font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif; }
+        font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif; }
 
 #sidebar {
   border-left: 1px solid #ddd;
@@ -223,14 +223,14 @@ b, strong {
     #sidebar .widget .search-form {
       position: relative;
       overflow: hidden;
-      font-family: "Amstelvar","Noto Serif SC",serif; }
+      font-family: "Noto Serif SC",serif; }
       #sidebar .widget .search-form :focus {
         border-style: solid;
         border-color: #aaa;
         box-shadow: 1px 1px 5px #b9b9b9; }
       #sidebar .widget .search-form input {
         outline: none;
-        font-family: 'Cinzel Decorative',"glyph-correction","Amstelvar","Noto Serif SC",serif;
+        font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif;
         background: transparent 8px 8px no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC30lEQVRYR72WjXHTQBCFcQekA6cDUgFKB6QCnAqwK8BUgKgAUQFOBbgDQgWoA1IC79PsavZOOv0Eh525iaPbn3dvd+9282ql7Pf71zLZavG3reu6XekiUd/MGVvASnoftN5Y4NzsrA+PWl/WAioCsMAf5XRXCFrCftLGYSmQUQAKzkm/G9Ux0BO02yIFSImVTwJxnGN4AEDB9zLi5B4AH1D8Teskp4BIRCaVPrCwi3KW/u0UiASAHO2k/DkEJ6/QCYBZsbRhjx+XSRA9AKP9RwhO0LuxE7tn2bzT77daSfEZiwBxkZv6MHaCCIDglSlx8tuZ4Fvp/AyAG/0m7y0+DBx15HKjPfwm0gEw6r/aDg5QHuQ6WhrdAABIFICfzS8+d7b5qO83JQA4opoRcl7niqX/R+h+kvmVAaCQI0hSSpv2srHco4S0WrOnHwMjP/EQdMudgYABZ7fR9/scwFEfvH2KxTLHiABspfM76F2RRkvVH/ves+N6MEChUM3IgKK5wHHf7gOKOSlifQcYAJGkGAEQN6+XXqFTwDh1LGL9H4uxL1J8JABkNPs4rWHEdQWAO4EbFrlXnCamgPx01+4LAogMJGmGgVi9XeE855QzKYl1NkhBvAGTzUsByQ6Z1BkMHBXI23DQp5cAEYpwcBsCgPwX+/QSAPBhLQqAJMX+FsRWTKr0UgBKfhwAF5G/XCDksmhfOnh3D4Rejd3AtHv9LwDsOX4vHw+x73OfEQC1QCp8FOM6pWdXM5FdPMQsvrD5SFZJmbZ0IR0YN0vYsEJjfPe3JZqNDqljQylzQRzNcAIbD1q0acKIdRE20E3gOMyiuw0oBiBKYzlGFKUPKTkBOIYd9GLAyBzB6uwhYj958icfH5t2oDSeYiobgGq08iE1PkbY9xfeotcvTL9VxopfKmd9/2WOYWcgI4XZjeuLABQcwgoTzuLHK7v2cXt4NoCpPEztZSBO/x0A4KxdKfDTX5sAU19wFoCDAAAAAElFTkSuQmCC");
         background-size: 7.8% 50%;
         padding: 6.3px 11px 4.5px 28px;
@@ -294,7 +294,7 @@ b, strong {
     text-align: left;
     font-size: 21px;
     font-weight: 600;
-    font-family: "glyph-correction","Amstelvar","Noto Serif SC",serif;
+    font-family: "glyph-correction","Noto Serif SC",serif;
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC); }
     .post .post-title a {
       color: var(--color-contrast-higher); }
@@ -312,7 +312,7 @@ b, strong {
       content: "\f073";
       padding-right: 0.3em; }
     .post .post-meta .category:before {
-      font-family: "Amstelvar","FontAwesome";
+      font-family: "FontAwesome";
       content: "\f07c";
       padding-right: 0.3em; }
     .post .post-meta #busuanzi_value_page_pv:before {
@@ -351,14 +351,14 @@ b, strong {
     font-weight: 450;
     line-height: 1.77;
     color: #171717;
-    font-family: "glyph-correction","Amstelvar","Noto Serif SC",serif;
+    font-family: "glyph-correction","Noto Serif SC",serif;
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC);
     padding-top: 15px;
     text-align: justify;
     text-justify: distribute;
     word-break: normal; }
     .post .post-content h2 {
-      font-family: "glyph-correction","Noto Serif SC","Amstelvar",serif;
+      font-family: "glyph-correction","Noto Serif SC",serif;
       font-size: 19px;
       margin: 35px 10px 15px 0;
       padding-left: 9px;
@@ -366,7 +366,7 @@ b, strong {
       font-weight: 700;
       line-height: 1.4; }
     .post .post-content h3 {
-      font-family: "glyph-correction","Noto Serif SC","Amstelvar",serif;
+      font-family: "glyph-correction","Noto Serif SC",serif;
       font-size: 17.5px;
       margin: 25px 10px 15px 0;
       padding-left: 9px;
@@ -391,14 +391,14 @@ b, strong {
         margin-top: 2.2px;
         padding: 0px 5px;
         background: #f6f6f6;
-        font-family: "JetBrains Mono","Source Code Pro","Noto Serif SC","Amstelvar","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
+        font-family: "JetBrains Mono","Source Code Pro","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue","Microsoft YaHei";
         font-size: 15px;
         font-weight: 400;
         letter-spacing: 1.25px;
         color: #0085a1;
         text-emphasis: '' !important; }
       .post .post-content p a {
-        font-family: "Source Code Pro","Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
+        font-family: "Source Code Pro","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
         color: #8696a7;
         padding-bottom: 2px;
         word-break: normal; }
@@ -468,7 +468,7 @@ b, strong {
     .post .post-content .one-tag-list {
       margin: 30px 0; }
       .post .post-content .one-tag-list .tag-name .tag-text {
-        font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
+        font-family: "Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
         margin-left: 5px;
         font-size: 18px;
         font-weight: bold;
@@ -516,7 +516,7 @@ b, strong {
       float: left; }
       .page-navigator a.prev:before,
       .page-navigator span.prev:before {
-        font-family: "Amstelvar", "Noto Serif SC", "FontAwesome","PingFangSC-Regular";
+        font-family: "Noto Serif SC", "FontAwesome","PingFangSC-Regular";
         content: "\f100";
         padding-right: 0.3em; }
       .page-navigator a.prev:hover,
@@ -529,7 +529,7 @@ b, strong {
       float: right; }
       .page-navigator a.next:after,
       .page-navigator span.next:after {
-        font-family: "Amstelvar", "Noto Serif SC", "FontAwesome","PingFangSC-Regular";
+        font-family: "Noto Serif SC", "FontAwesome","PingFangSC-Regular";
         content: "\f101";
         padding-left: 0.3em; }
       .page-navigator a.next:hover,
@@ -566,7 +566,7 @@ b, strong {
       color: #949494 !important; }
   .post-archive h2 {
     margin: 0;
-    font: bold 30px / 1.1 'Cinzel Decorative',"Amstelvar","Noto Serif SC","PingFangSC-Regular","Times New Roman", Georgia, Times, sans-serif;
+    font: bold 30px / 1.1 'Cinzel Decorative',"Noto Serif SC","PingFangSC-Regular","Times New Roman", Georgia, Times, sans-serif;
     color: #333 !important; }
   .post-archive .date {
     padding-right: .7em;
@@ -597,7 +597,7 @@ b, strong {
       line-height: 27px;
       height: 27px;
       font-size: 16px;
-      font-family: "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI" !important; } }
+      font-family: "Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI" !important; } }
 
 .fa-home::before {
   content: "\f015" !important; }
@@ -605,7 +605,7 @@ b, strong {
 .fa {
   font-size: 16px !important;
   font-weight: 520 !important;
-  font-family: "FontAwesome", "Times New Roman", "Amstelvar","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI" !important; }
+  font-family: "FontAwesome", "Times New Roman", "Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI" !important; }
 
 /* small*/
 @media print, screen and (max-width: 35.5em) {
@@ -972,7 +972,7 @@ pre {
 .readmore a {
   font-size: 14px;
   font-weight: 450;
-  font-family: "Amstelvar",'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif;
+  font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif;
   color: #aaa;
   margin: -10px 0;
   padding: 5px 10px;
@@ -1538,13 +1538,13 @@ figure.highlight,
     float: left; }
     .post-nav a.pre {
       float: left;
-      font-family: "Noto Serif SC","Amstelvar","PingFangSC-Regular","FontAwesome"; }
+      font-family: "Noto Serif SC","PingFangSC-Regular","FontAwesome"; }
       .post-nav a.pre:before {
         content: "\f0d9";
         padding-right: 0.3em; }
     .post-nav a.next {
       float: right;
-      font-family: "Noto Serif SC","Amstelvar","PingFangSC-Regular","FontAwesome"; }
+      font-family: "Noto Serif SC","PingFangSC-Regular","FontAwesome"; }
       .post-nav a.next:after {
         font-family: "FontAwesome";
         content: "\f0da";
@@ -1699,7 +1699,7 @@ ul.search-result-list {
   padding-left: 10px; }
 
 a.search-result-title {
-  font-family: "glyph-correction", "Amstelvar", "Noto Serif SC", serif, "PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
+  font-family: "glyph-correction", "Noto Serif SC", serif, "PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI";
   font-weight: bold;
   font-size: 15px;
   color: #555; }
@@ -1947,7 +1947,7 @@ html[data-dark='true'] blockquote, html[data-dark='true'] .stressed {
     margin: 0.5em;
     line-height: 1.8em; }
     #stoc .toc li {
-      font-family: "Noto Serif SC","Amstelvar","PingFangSC-Regular","FontAwesome";
+      font-family: "Noto Serif SC","PingFangSC-Regular","FontAwesome";
       list-style-type: none; }
     #stoc .toc ::marker {
       margin-left: auto;
