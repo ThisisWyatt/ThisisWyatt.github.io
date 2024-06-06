@@ -33,7 +33,7 @@ specific font stacks to ensure the greatest OS/browser compatibility.
 
 @font-face {
   font-family: Amstelvar;
-  src: url(../font/Amstelvar-Roman[GRAD\,XOPQ\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,wdth\,wght\,opsz].ttf); }
+  src: url(https://wyatt-ink-pic.oss-cn-beijing.aliyuncs.com/font/Amstelvar-Roman%5BGRAD%2CXOPQ%2CXTRA%2CYOPQ%2CYTAS%2CYTDE%2CYTFI%2CYTLC%2CYTUC%2Cwdth%2Cwght%2Copsz%5D.ttf); }
 
 html,
 select,
