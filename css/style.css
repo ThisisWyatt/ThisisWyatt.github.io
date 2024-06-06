@@ -13,6 +13,7 @@ with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
 specific font stacks to ensure the greatest OS/browser compatibility.
 */
 /* latin */
+@import url("https://fonts.font.im/css?family=East+Sea+Dokdo");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
@@ -30,10 +31,6 @@ specific font stacks to ensure the greatest OS/browser compatibility.
   font-weight: 700;
   font-display: swap;
   src: url(https://fonts.gstatic.com/l/font?kit=S6u9w4BMUTPHh6UVewqFHi_o39tQh4Ytrrc&skey=3480a19627739c0d&v=v22) format("woff2"); }
-
-@font-face {
-  font-family: Amstelvar;
-  src: url(https://wyatt-ink-pic.oss-cn-beijing.aliyuncs.com/font/Amstelvar-Roman%5BGRAD%2CXOPQ%2CXTRA%2CYOPQ%2CYTAS%2CYTDE%2CYTFI%2CYTLC%2CYTUC%2Cwdth%2Cwght%2Copsz%5D.ttf); }
 
 html,
 select,
@@ -126,7 +123,7 @@ b, strong {
       height: 0;
       overflow: hidden; }
     #header .site-name #logo {
-      font: bold 48px/1.12 "Times New Roman", "Noto Serif SC", "PingFangSC-Regular",'Amstelvar',"WenQuanYi Micro Hei",Georgia, Times, sans-serif;
+      font: bold 78px/1.12 "East Sea Dokdo","Times New Roman", "Noto Serif SC", "PingFangSC-Regular",'Amstelvar',"WenQuanYi Micro Hei",Georgia, Times, sans-serif;
       color: var(--color-contrast-higher);
       text-shadow: #b8b8b8 0.1em 0.1em 0.2em; }
       #header .site-name #logo span, #header .site-name #logo:hover {
@@ -164,10 +161,10 @@ b, strong {
   padding-bottom: 20px;
   word-wrap: break-word;
   font-family: 'Amstelvar', 'Songti SC', 'glyph-correction', 'Noto Serif SC', serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500; }
   #sidebar .widget {
-    font-family: 'Amstelvar', 'Noto Serif SC',"glyph-correction",serif;
+    font-family: 'JetBrains Mono', 'Amstelvar', 'Noto Serif SC',"glyph-correction",serif;
     margin-bottom: 30px; }
     #sidebar .widget .widget-title {
       color: var(--color-contrast-high);
