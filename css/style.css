@@ -23,13 +23,6 @@ specific font stacks to ensure the greatest OS/browser compatibility.
   src: url(https://fonts.gstatic.com/s/cinzeldecorative/v12/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlESTGplhXF.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/l/font?kit=S6u9w4BMUTPHh6UVewqFHi_o39tQh4Ytrrc&skey=3480a19627739c0d&v=v22) format("woff2"); }
-
 html,
 select,
 button,
@@ -37,7 +30,7 @@ textarea,
 .MJXc-TeX-unknown-R,
 .pure-g [class*="pure-u"] {
   /* Set your content font stack here: */
-  font-family: "Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif !important; }
+  font-family: "glyph-correction","Noto Serif SC","PingFangSC-Regular", Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", sans-serif !important; }
 
 input {
   font-family: 'Cinzel Decorative',"glyph-correction","Noto Serif SC",serif; }
@@ -292,7 +285,7 @@ b, strong {
     text-align: left;
     font-size: 21px;
     font-weight: 600;
-    font-family: "glyph-correction","Noto Serif SC",serif;
+    font-family: "Noto Serif SC","-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC); }
     .post .post-title a {
       color: var(--color-contrast-higher); }
@@ -349,7 +342,7 @@ b, strong {
     font-weight: 450;
     line-height: 1.77;
     color: #171717;
-    font-family: "glyph-correction","Noto Serif SC",serif;
+    font-family: "Noto Serif SC","-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC);
     padding-top: 15px;
     text-align: justify;
