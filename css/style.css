@@ -285,7 +285,7 @@ b, strong {
     text-align: left;
     font-size: 21px;
     font-weight: 600;
-    font-family: "Noto Serif SC","-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
+    font-family: "-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC); }
     .post .post-title a {
       color: var(--color-contrast-higher); }
@@ -339,10 +339,10 @@ b, strong {
   .post .post-content {
     clear: left;
     font-size: 16px;
-    font-weight: 450;
+    font-weight: 500;
     line-height: 1.77;
     color: #171717;
-    font-family: "Noto Serif SC","-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
+    font-family: "-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC);
     padding-top: 15px;
     text-align: justify;
