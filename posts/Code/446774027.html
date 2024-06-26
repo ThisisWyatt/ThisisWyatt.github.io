@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>iptables 重定向请求ip | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.1"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">iptables 重定向请求ip</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">iptables 重定向请求ip</h1><div class="post-meta">June 2024</div><div class="post-content"><h3 id="一、测试内部主机ip访问"><a href="#一、测试内部主机ip访问" class="headerlink" title="一、测试内部主机ip访问"></a>一、测试内部主机ip访问</h3><ul>
+<li><code>curl http://192.168.0.58:8099</code></li>
+</ul>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><ul>
+<li><p>清空原 iptables 规则 <code>iptables -F &amp;&amp; iptables -t nat -F &amp;&amp; iptables -t mangle -F &amp;&amp; iptables -X</code></p>
+<blockquote>
+<p>查看iptables规则 <code>sudo iptables -L -n</code></p>
+</blockquote>
+</li>
+<li><p>启用 IP 转发功能 <code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</code></p>
+</li>
+<li><p>允许本地路由 <code>sysctl -w net.ipv4.conf.all.route_localnet=1</code></p>
+</li>
+<li><p>tcp流量重定向  <code>iptables -t nat -A OUTPUT -p tcp -d 100.127.24.111 --dport 8099 -j DNAT --to-destination 192.168.0.58</code></p>
+<blockquote>
+<p>可选参数 –dport 8099</p>
+</blockquote>
+</li>
+<li><p>返回流量重定向 <code>iptables -t nat -A INPUT -p tcp --sport 8099 -j SNAT --to-source 100.127.24.111</code></p>
+<blockquote>
+<p>可选参数 –sport 8099</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="三、测试重定向后ip访问"><a href="#三、测试重定向后ip访问" class="headerlink" title="三、测试重定向后ip访问"></a>三、测试重定向后ip访问</h3><ul>
+<li><code>curl http://100.127.24.111:8099</code></li>
+</ul>
+<h3 id="四、持久化"><a href="#四、持久化" class="headerlink" title="四、持久化"></a>四、持久化</h3><ul>
+<li><strong>保存规则</strong> <code>sudo iptables-save &gt; /root/.iptables.rules</code></li>
+<li><strong>恢复规则</strong> <code>sudo iptables-restore &lt; /root/.iptables.rules</code></li>
+<li><strong>机器启动时自动恢复</strong> <code>echo &quot;iptables-restore &lt; /root/.iptables.rules&quot; &gt;&gt; /etc/rc.local</code></li>
+</ul>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.1"><p><span>发布时间: </span>2024-06-26  15:04:33</p><p><span>更新时间: </span>2024-06-26  14:59:57</p><p><span>本文链接: </span><a href="/posts/Code/446774027.html">https://wyatt.ink/posts/Code/446774027.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/446774027.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a class="next" href="/posts/Code/1521035310.html">MongoDB基础命令</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B5%8B%E8%AF%95%E5%86%85%E9%83%A8%E4%B8%BB%E6%9C%BAip%E8%AE%BF%E9%97%AE"><span class="toc-text">一、测试内部主机ip访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95%E9%87%8D%E5%AE%9A%E5%90%91%E5%90%8Eip%E8%AE%BF%E9%97%AE"><span class="toc-text">三、测试重定向后ip访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">四、持久化</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.1" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.1" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.1"><script type="text/javascript" src="/js/search.js?v=1.0.1"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.1" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.1"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.1"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.1"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.1" async></script></div></body></html>

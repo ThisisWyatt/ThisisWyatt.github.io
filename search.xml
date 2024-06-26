@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>iptables 重定向请求ip</title>
+      <link href="/posts/Code/446774027.html"/>
+      <url>/posts/Code/446774027.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、测试内部主机ip访问"><a href="#一、测试内部主机ip访问" class="headerlink" title="一、测试内部主机ip访问"></a>一、测试内部主机ip访问</h3><ul><li><code>curl http://192.168.0.58:8099</code></li></ul><h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><ul><li><p>清空原 iptables 规则 <code>iptables -F &amp;&amp; iptables -t nat -F &amp;&amp; iptables -t mangle -F &amp;&amp; iptables -X</code></p><blockquote><p>查看iptables规则 <code>sudo iptables -L -n</code></p></blockquote></li><li><p>启用 IP 转发功能 <code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</code></p></li><li><p>允许本地路由 <code>sysctl -w net.ipv4.conf.all.route_localnet=1</code></p></li><li><p>tcp流量重定向  <code>iptables -t nat -A OUTPUT -p tcp -d 100.127.24.111 --dport 8099 -j DNAT --to-destination 192.168.0.58</code></p><blockquote><p>可选参数 –dport 8099</p></blockquote></li><li><p>返回流量重定向 <code>iptables -t nat -A INPUT -p tcp --sport 8099 -j SNAT --to-source 100.127.24.111</code></p><blockquote><p>可选参数 –sport 8099</p></blockquote></li></ul><h3 id="三、测试重定向后ip访问"><a href="#三、测试重定向后ip访问" class="headerlink" title="三、测试重定向后ip访问"></a>三、测试重定向后ip访问</h3><ul><li><code>curl http://100.127.24.111:8099</code></li></ul><h3 id="四、持久化"><a href="#四、持久化" class="headerlink" title="四、持久化"></a>四、持久化</h3><ul><li><strong>保存规则</strong> <code>sudo iptables-save &gt; /root/.iptables.rules</code></li><li><strong>恢复规则</strong> <code>sudo iptables-restore &lt; /root/.iptables.rules</code></li><li><strong>机器启动时自动恢复</strong> <code>echo &quot;iptables-restore &lt; /root/.iptables.rules&quot; &gt;&gt; /etc/rc.local</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Code </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MongoDB基础命令</title>
       <link href="/posts/Code/1521035310.html"/>
       <url>/posts/Code/1521035310.html</url>

@@ -6,7 +6,7 @@
   <link href="https://wyatt.ink/atom.xml" rel="self"/>
   
   <link href="https://wyatt.ink/"/>
-  <updated>2024-06-06T05:52:56.549Z</updated>
+  <updated>2024-06-26T06:59:57.306Z</updated>
   <id>https://wyatt.ink/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iptables 重定向请求ip</title>
+    <link href="https://wyatt.ink/posts/Code/446774027.html"/>
+    <id>https://wyatt.ink/posts/Code/446774027.html</id>
+    <published>2024-06-26T07:04:33.000Z</published>
+    <updated>2024-06-26T06:59:57.306Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、测试内部主机ip访问"><a href="#一、测试内部主机ip访问" class="headerlink" title="一、测试内部主机ip访问"></a>一、测试内部主机ip访问</h3><ul><li><code>curl http://192.168.0.58:8099</code></li></ul><h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><ul><li><p>清空原 iptables 规则 <code>iptables -F &amp;&amp; iptables -t nat -F &amp;&amp; iptables -t mangle -F &amp;&amp; iptables -X</code></p><blockquote><p>查看iptables规则 <code>sudo iptables -L -n</code></p></blockquote></li><li><p>启用 IP 转发功能 <code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</code></p></li><li><p>允许本地路由 <code>sysctl -w net.ipv4.conf.all.route_localnet=1</code></p></li><li><p>tcp流量重定向  <code>iptables -t nat -A OUTPUT -p tcp -d 100.127.24.111 --dport 8099 -j DNAT --to-destination 192.168.0.58</code></p><blockquote><p>可选参数 –dport 8099</p></blockquote></li><li><p>返回流量重定向 <code>iptables -t nat -A INPUT -p tcp --sport 8099 -j SNAT --to-source 100.127.24.111</code></p><blockquote><p>可选参数 –sport 8099</p></blockquote></li></ul><h3 id="三、测试重定向后ip访问"><a href="#三、测试重定向后ip访问" class="headerlink" title="三、测试重定向后ip访问"></a>三、测试重定向后ip访问</h3><ul><li><code>curl http://100.127.24.111:8099</code></li></ul><h3 id="四、持久化"><a href="#四、持久化" class="headerlink" title="四、持久化"></a>四、持久化</h3><ul><li><strong>保存规则</strong> <code>sudo iptables-save &gt; /root/.iptables.rules</code></li><li><strong>恢复规则</strong> <code>sudo iptables-restore &lt; /root/.iptables.rules</code></li><li><strong>机器启动时自动恢复</strong> <code>echo &quot;iptables-restore &lt; /root/.iptables.rules&quot; &gt;&gt; /etc/rc.local</code></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、测试内部主机ip访问&quot;&gt;&lt;a href=&quot;#一、测试内部主机ip访问&quot; class=&quot;headerlink&quot; title=&quot;一、测试内部主机ip访问&quot;&gt;&lt;/a&gt;一、测试内部主机ip访问&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;curl http://192.16</summary>
+      
+    
+    
+    
+    <category term="Code" scheme="https://wyatt.ink/categories/Code/"/>
+    
+    
+    <category term="Linux" scheme="https://wyatt.ink/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>MongoDB基础命令</title>
@@ -497,35 +522,6 @@
     
     
     <category term="Array" scheme="https://wyatt.ink/tags/Array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Liunx下安装JDK</title>
-    <link href="https://wyatt.ink/posts/Linux/2be0aa3a.html"/>
-    <id>https://wyatt.ink/posts/Linux/2be0aa3a.html</id>
-    <published>2020-07-20T11:02:10.000Z</published>
-    <updated>2022-04-25T07:44:40.023Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>解压</li><li>创建储存位置</li><li>移动jdk到指定位置</li><li>配置环境变量</li><li>更新环境变量</li><li>更新环境变量</li><li>测试</li></ul><span id="more"></span><h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1.解压"></a>1.解压</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# tar -zxvf jdk-8u161-linux-x64.tar.gz </span><br></pre></td></tr></table></figure><h2 id="2-创建储存位置"><a href="#2-创建储存位置" class="headerlink" title="2.创建储存位置"></a>2.创建储存位置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# cd /usr</span><br><span class="line">[root@cc resource]# mkdir java</span><br><span class="line">[root@cc resource]# cd java</span><br></pre></td></tr></table></figure><h2 id="3-移动jdk到指定位置"><a href="#3-移动jdk到指定位置" class="headerlink" title="3.移动jdk到指定位置"></a>3.移动jdk到指定位置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# mv  jdk1.8.0_161/ /usr/java</span><br></pre></td></tr></table></figure><h2 id="4-配置环境变量"><a href="#4-配置环境变量" class="headerlink" title="4.配置环境变量"></a>4.配置环境变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# vim /etc/profile</span><br><span class="line"></span><br><span class="line">添加如下代码：</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_161</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib:$CLASSPATH</span><br><span class="line">export JAVA_PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_PATH&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="5-更新环境变量"><a href="#5-更新环境变量" class="headerlink" title="5.更新环境变量"></a>5.更新环境变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# source /etc/profile</span><br></pre></td></tr></table></figure><h2 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@cc resource]# java -version</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;解压&lt;/li&gt;
-&lt;li&gt;创建储存位置&lt;/li&gt;
-&lt;li&gt;移动jdk到指定位置&lt;/li&gt;
-&lt;li&gt;配置环境变量&lt;/li&gt;
-&lt;li&gt;更新环境变量&lt;/li&gt;
-&lt;li&gt;更新环境变量&lt;/li&gt;
-&lt;li&gt;测试&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://wyatt.ink/categories/Linux/"/>
-    
-    
-    <category term="环境配置" scheme="https://wyatt.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
