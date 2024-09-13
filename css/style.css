@@ -1880,6 +1880,12 @@ html[data-dark='true'] .page-navigator {
 html[data-dark='true'] blockquote, html[data-dark='true'] .stressed {
   background: #393d45; }
 
+#header #nav-menu a.current {
+  border-bottom-width: 1.4px !important; }
+
+#header #nav-menu a:hover {
+  border-bottom-color: #ffc107; }
+
 .darkmode-toggle {
   background: #a2a2a2;
   width: 3rem;
