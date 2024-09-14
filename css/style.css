@@ -1816,9 +1816,6 @@ html[data-dark='true'] .readmore a:hover {
   border: 1px solid #808080 !important;
   background: #808080; }
 
-html[data-dark='true'] .post .post-meta {
-  color: #aaa; }
-
 html[data-dark='true'] figure.highlight, html[data-dark='true'] .codeblock {
   background: #35383e; }
 
@@ -1879,6 +1876,10 @@ html[data-dark='true'] .page-navigator {
 
 html[data-dark='true'] blockquote, html[data-dark='true'] .stressed {
   background: #393d45; }
+
+.post .post-meta {
+  color: #808080;
+  font-family: "JetBrains Mono","PingFangSC-Regular","Noto Serif SC","FontAwesome" !important; }
 
 #header #nav-menu a.current {
   border-bottom-width: 1.4px !important; }
