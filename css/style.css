@@ -343,7 +343,7 @@ b, strong {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.77;
-    color: #171717;
+    color: #363636;
     font-family: "-apple-system", "Segoe UI", "Oxygen", "Ubuntu", "Droid Sans", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
     font-variation-settings: "wdth" var(--text-wdth), "opsz" var(--text-opsz), "YTLC" var(--text-YTLC);
     padding-top: 15px;
