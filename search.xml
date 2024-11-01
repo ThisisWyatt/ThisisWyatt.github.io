@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>selenium chromedriver python自动化登录</title>
+      <link href="/posts/Tools/8d229e40.html"/>
+      <url>/posts/Tools/8d229e40.html</url>
+      
+        <content type="html"><![CDATA[<p>在 Python 环境下利用 selenium + chromedriver 自动化登录，自动输入账号、密码，并登录进入主页获取登录会话Token信息</p><h2 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h2><ul><li><p>软件版本<br>python3 -V： 3.11.9、 3.9.9<br>pip3 show selenium: 4.26.1<br>google-chrome –version: Google Chrome 130.0.6723.91<br>chromedriver –version: ChromeDriver 130.0.6723.91</p></li><li><p>安装selenium</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure><blockquote><p>如不行，可尝试 <code>net stop winnat</code>、<code>net start winnat</code></p></blockquote><span id="more"></span></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>XJar加密jar包</title>
       <link href="/posts/Code/1553197198.html"/>
       <url>/posts/Code/1553197198.html</url>
