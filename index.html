@@ -3,15 +3,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', '');
-</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Tie × Wiki</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/posts/Tools/8d229e40.html">selenium chromedriver python自动化登录</a></h1><div class="post-meta">November 2024</div><div class="post-content"><p>在 Python 环境下利用 selenium + chromedriver 自动化登录，自动输入账号、密码，并登录进入主页获取登录会话Token信息</p>
-<h2 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h2><ul>
-<li><p>软件版本<br>python3 -V： 3.11.9、 3.9.9<br>pip3 show selenium: 4.26.1<br>google-chrome –version: Google Chrome 130.0.6723.91<br>chromedriver –version: ChromeDriver 130.0.6723.91</p>
-</li>
-<li><p>安装selenium</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如不行，可尝试 <code>net stop winnat</code>、<code>net start winnat</code></p>
-</blockquote></div><p class="readmore"><a href="/posts/Tools/8d229e40.html">阅读全文</a></p></div><div class="post"><h1 class="post-title"><a href="/posts/Code/1553197198.html">XJar加密jar包</a></h1><div class="post-meta">September 2024</div><div class="post-content"><p>XJar 是一个用于加密 Spring Boot JAR 文件的工具，它同样也支持原生 JAR 文件。它通过加密 JAR 包内的资源和扩展 ClassLoader 的方式，实现了程序的加密启动和动态解密运行，以此来防止源码泄露和反编译。</p>
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Tie × Wiki</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/posts/Tools/1130652765.html">使用Selenium和Chromedriver自动化登录以提取会话Token</a></h1><div class="post-meta">November 2024</div><div class="post-content"><p>结合使用selenium库和chromedriver，可以编写一个脚本来模拟用户实现登录过程：使用selenium启动Chrome浏览器，定位到登录页面中的用户名和密码输入框，自动填充账号和密码信息，接着触发登录按钮完成登录操作，登录成功后可提取该Token信息，以便后续的自动化操作或进行身份验证</p></div><p class="readmore"><a href="/posts/Tools/1130652765.html">阅读全文</a></p></div><div class="post"><h1 class="post-title"><a href="/posts/Code/1553197198.html">XJar加密jar包</a></h1><div class="post-meta">September 2024</div><div class="post-content"><p>XJar 是一个用于加密 Spring Boot JAR 文件的工具，它同样也支持原生 JAR 文件。它通过加密 JAR 包内的资源和扩展 ClassLoader 的方式，实现了程序的加密启动和动态解密运行，以此来防止源码泄露和反编译。</p>
 <p><strong>功能特性</strong>：</p>
 <ul>
 <li>无需侵入代码，只需对编译好的 JAR 包进行加密。</li>
