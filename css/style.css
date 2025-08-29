@@ -15,7 +15,6 @@ specific font stacks to ensure the greatest OS/browser compatibility.
 /* latin */
 @import url("https://fonts.font.im/css?family=East+Sea+Dokdo");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-@import url("https://google-fonts-1255707222.file.myqcloud.com/css/google-fonts-noto-serif-sc-700-v1.css");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
 @font-face {
   font-family: "Cinzel Decorative";
