@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>iptables 重定向请求ip | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">iptables 重定向请求ip</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">iptables 重定向请求ip</h1><div class="post-meta">June 2024</div><div class="post-content"><p>iptables 是 Linux 操作系统中一个功能强大的防火墙工具，它用于配置网络传输相关规则，以控制进入和离开系统的数据包。iptables 可以执行多种任务，包括过滤基于源&#x2F;目的 IP 地址、端口号、协议类型（如 TCP、UDP）等条件的数据包，以及实现网络地址转换（NAT）、包内容修改等高级功能。</p>
+<blockquote>
+<p>将请求192.168.0.31的请求重定向至127.0.0.1</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="一、测试最终IP访问"><a href="#一、测试最终IP访问" class="headerlink" title="一、测试最终IP访问"></a>一、测试最终IP访问</h3><ul>
+<li><code>curl http:/127.0.0.1:8080</code></li>
+</ul>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><ul>
+<li><p>查看原iptables规则 <code>sudo iptables -L -n</code></p>
+</li>
+<li><p>启用 IP 转发功能 <code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward</code></p>
+</li>
+<li><p>允许本地路由 <code>sysctl -w net.ipv4.conf.all.route_localnet=1</code></p>
+</li>
+<li><p>tcp流量重定向  <code>iptables -t nat -A OUTPUT -p tcp -d 192.168.0.31 --dport 8080 -j DNAT --to-destination 127.0.0.1</code></p>
+<blockquote>
+<p>可选参数 –dport 8080</p>
+</blockquote>
+</li>
+<li><p>返回流量重定向 <code>iptables -t nat -A INPUT -p tcp --sport 8080 -j SNAT --to-source 192.168.0.31</code></p>
+<blockquote>
+<p>可选参数 –sport 8080</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="三、测试重定向ip访问"><a href="#三、测试重定向ip访问" class="headerlink" title="三、测试重定向ip访问"></a>三、测试重定向ip访问</h3><ul>
+<li><code>curl http://192.168.0.31:8080</code></li>
+</ul>
+<h3 id="四、持久化"><a href="#四、持久化" class="headerlink" title="四、持久化"></a>四、持久化</h3><ul>
+<li>保存规则 <code>sudo iptables-save &gt; /root/.iptables.rules</code></li>
+<li>恢复规则 <code>sudo iptables-restore &lt; /root/.iptables.rules</code></li>
+<li>机器启动时自动恢复 <code>echo &quot;iptables-restore &lt; /root/.iptables.rules&quot; &gt;&gt; /etc/rc.local</code></li>
+</ul>
+<blockquote>
+<p>当前方法可能会对docker内部网络通信产生影响，进而导致容器产生异常，手动重启容器，故需要观察使用是否会产生影响</p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2024-06-26  15:04:33</p><p><span>更新时间: </span>2024-09-12  16:47:40</p><p><span>本文链接: </span><a href="/posts/Code/446774027.html">https://wyatt.ink/posts/Code/446774027.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/446774027.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a class="pre" href="/posts/Code/1553197198.html">XJar加密jar包</a><a class="next" href="/posts/Code/1521035310.html">MongoDB基础命令</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B5%8B%E8%AF%95%E6%9C%80%E7%BB%88IP%E8%AE%BF%E9%97%AE"><span class="toc-text">一、测试最终IP访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE"><span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95%E9%87%8D%E5%AE%9A%E5%90%91ip%E8%AE%BF%E9%97%AE"><span class="toc-text">三、测试重定向ip访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">四、持久化</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

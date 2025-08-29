@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>单例模式 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">单例模式</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">单例模式</h1><div class="post-meta">July 2020</div><div class="post-content"><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于<strong>创建型模式</strong>，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，<strong>该类负责创建自己的对象，同时确保只有单个对象被创建</strong>。这个类提供了<strong>一种访问其唯一的对象的方式，可以直接访问</strong>，不需要实例化该类的对象。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cloud-r/GitakRepository/static_files/blog/img/20200702230738.png" alt="单例模式"></p>
+<span id="more"></span>
+
+<h2 id="一、特点"><a href="#一、特点" class="headerlink" title="一、特点"></a>一、特点</h2><h3 id="1-1-属性"><a href="#1-1-属性" class="headerlink" title="1.1 属性"></a>1.1 属性</h3><p>意图<strong>保证一个类仅有一个实例，并提供一个访问它的全局访问点</strong>。</p>
+<p>主要解决：一<strong>个全局使用的类频繁地创建与销毁</strong>。</p>
+<p>何时使用：当您想<strong>控制实例数目，节省系统资源</strong>的时候。</p>
+<p>如何解决：判断系统是否已经有这个单例，如果<strong>有则返回，如果没有则创建</strong>。</p>
+<p>关键代码：<strong>构造函数是私有的</strong>。</p>
+<p>应用实例：<strong>一些设备管理器常常设计为单例模式</strong>，比如一个电脑有两台打印机，在输出的时候就要处理不能两台打印机打印同一个文件。 </p>
+<ul>
+<li><p>优点：</p>
+<ol>
+<li>在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。        </li>
+<li>避免对资源的多重占用（比如写文件操作）。</li>
+</ol>
+</li>
+<li><p>缺点：没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
+</li>
+<li><p>使用场景：       </p>
+<ol>
+<li>要求生产唯一序列号       </li>
+<li>WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来            </li>
+<li>创建的一个对象需要消耗的资源过多，比如 I&#x2F;O 与数据库的连接等。</li>
+</ol>
+</li>
+<li><p>注意事项：getInstance() 方法中需要使用同步锁 synchronized (Singleton.class) 防止多线程同时进入造成 instance 被多次实例化。</p>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="二、单例模式的实现"><a href="#二、单例模式的实现" class="headerlink" title="二、单例模式的实现"></a>二、单例模式的实现</h2><p>三个步骤：   </p>
+<ol>
+<li>构造函数私有化   </li>
+<li>自行对外提供实例</li>
+<li>提供外界可以获得该实例的方法</li>
+</ol>
+<h3 id="2-1-传统的创建类的方式"><a href="#2-1-传统的创建类的方式" class="headerlink" title="2.1 传统的创建类的方式"></a>2.1 传统的创建类的方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">s1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Singleton</span> <span class="variable">singleton1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">        <span class="type">Singleton</span> <span class="variable">singleton2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，每次<code>new Singleton()</code>都会创建一个Signleton实例。</p>
+<h3 id="2-2-恶汉模式"><a href="#2-2-恶汉模式" class="headerlink" title="2.2 恶汉模式"></a>2.2 恶汉模式</h3><blockquote>
+<p>是否 Lazy 初始化：否<br>是否多线程安全：是<br>实现难度：易    </p>
+</blockquote>
+<ul>
+<li>描述：这种方式比较常用，但<strong>容易产生垃圾对象</strong>。   </li>
+<li>优点：<strong>没有加锁，执行效率会提高</strong>。       </li>
+<li>缺点：<strong>类加载时就初始化，浪费内存</strong>。</li>
+</ul>
+<p>它基于 <strong>classloader 机制避免了多线程的同步问题</strong>，不过，instance在类装载时就实例化，虽然导致类装载的原因有很多种，在单例模式中大多数都是调用 getInstance 方法，但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，这时候初始化instance显然没有达到 lazy loading 的效果。</p>
+<blockquote>
+<p>lazy loading(延迟加载):例如创建某一对象时需要花费很大的开销，而这一对象在系统的运行过程中不一定会用到，这时就可以使用延迟加载，<strong>在第一次使用该对象时再对其进行初始化，如果没有用到则不需要进行初始化</strong>,这样的话，使用延迟初始化就提高程序的效率，从而使程序占用更少的内存。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-3-懒汉模式"><a href="#2-3-懒汉模式" class="headerlink" title="2.3 懒汉模式"></a>2.3 懒汉模式</h3><blockquote>
+<p>是否Lazy初始化：是<br>是否多线程安全：是<br>实现难度：易     </p>
+</blockquote>
+<ul>
+<li>描述：这种方式<strong>具备很好的 lazy loading，能够在多线程中很好的工作</strong>，但是<strong>效率很低</strong>，99% 情况下不需要同步。</li>
+<li>优点：第一次调用才初始化，<strong>避免内存浪费</strong>。</li>
+<li>缺点：必须加锁 synchronized 才能保证单例，但<strong>加锁会影响效率</strong>。</li>
+</ul>
+<p>getInstance() 的性能对应用程序不是很关键（该方法使用不太频繁）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-4-双检锁-双重校验锁（DCL，即-double-checked-locking）"><a href="#2-4-双检锁-双重校验锁（DCL，即-double-checked-locking）" class="headerlink" title="2.4 双检锁&#x2F;双重校验锁（DCL，即 double-checked locking）"></a>2.4 双检锁&#x2F;双重校验锁（DCL，即 double-checked locking）</h3><p>添加synchronized锁虽然可以保证线程安全，但是<strong>每次访问getInstance()方法的时候，都会有加锁和解锁操作</strong>，同时synchronized<strong>锁加在方法上面，锁的范围过大，会成为系统的瓶颈</strong>。</p>
+<blockquote>
+<p>是否 Lazy 初始化：是<br>是否多线程安全：是<br>实现难度：较复杂      </p>
+</blockquote>
+<ul>
+<li>描述：这种方式采用双锁机制，安全且在多线程情况下能保持高性能。</li>
+</ul>
+<p>getInstance() 的性能对应用程序很关键</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getSingleton</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;    <span class="comment">//第一次校验</span></span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;    <span class="comment">//只对这一部分加锁</span></span><br><span class="line">                <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;    <span class="comment">//第二次校验</span></span><br><span class="line">                    singleton = <span class="keyword">new</span> <span class="title class_">Singleton</span>();    <span class="comment">//非原子操作</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-5-双检锁-双重校验锁-增加volatile"><a href="#2-5-双检锁-双重校验锁-增加volatile" class="headerlink" title="2.5 双检锁&#x2F;双重校验锁(增加volatile)"></a>2.5 双检锁&#x2F;双重校验锁(增加volatile)</h3><p>双重校验锁会出现指令重排的问题，<code>singleton = new Singleton();</code>并非一个原子操作，实际上，它可以抽象为下面几个JVM指令：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 分配对象内存空间</span></span><br><span class="line">memory = allocate();</span><br><span class="line"><span class="comment">//2. 初始化对象</span></span><br><span class="line">ctorInstance(memory);</span><br><span class="line"><span class="comment">//3. 设置instance指向刚分配的内存地址</span></span><br><span class="line">singleton = memory;</span><br></pre></td></tr></table></figure>
+<p>操作2依赖于操作1，但操作3并不依赖于操作1，所以JVM是可以针对它们进行指令优化，优化后如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 分配对象内存空间</span></span><br><span class="line">memory = allocate();</span><br><span class="line"><span class="comment">//3. 设置instance指向刚分配的内存地址</span></span><br><span class="line">singleton = memory;</span><br><span class="line"><span class="comment">//2. 初始化对象</span></span><br><span class="line">ctorInstance(memory);</span><br></pre></td></tr></table></figure>
+<p>可以看到，指令重排之后，singleton指向分配好的内存放在前面，而这段内存的初始化被排在了后面。<br>线程A执行这段赋值语句，<strong>在初始化分配对象之前就已经将其赋值singleton引用</strong>，恰好<strong>线程B进入方法判断singleton的引用不为空</strong>，然后就将其返回使用，导致程序出错。<br>为了解决指令重排问题，可以使用<code>volatile</code>关键字修饰singleton字段，<strong>禁止指令的重排序优化</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="type">Singleton</span> <span class="variable">singleton</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton = <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (singleton = <span class="literal">null</span>) &#123;</span><br><span class="line">                    singleton = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> signleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-6-静态内部类"><a href="#2-6-静态内部类" class="headerlink" title="2.6 静态内部类"></a>2.6 静态内部类</h3><blockquote>
+<p>是否 Lazy 初始化：是<br>是否多线程安全：是<br>实现难度：一般      </p>
+</blockquote>
+<p>描述：当第<strong>一次访问类中的静态字段时，会触发类加载，并且保证同一个类只加载一次。</strong>静态内部类也是如此，<strong>类加载过程有类加载器负责加锁</strong>。这种写法相对于双重检验锁的写法，更加简单。对<strong>静态域使用延迟初始化，应使用这种方式而不是双检锁方式</strong>。这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用。</p>
+<blockquote>
+<p>静态域：如果将域定义为static，每个类中只有一个这样的域，这个类的所有对象将共享这个域，这个域称为静态域。这个域属于类，而不属于任何独立的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="comment">//私有的静态内部类，类加载器负责加锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">SingletonHolder</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="variable">singleton</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Singleton.singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-6-枚举"><a href="#2-6-枚举" class="headerlink" title="2.6 枚举"></a>2.6 枚举</h3><blockquote>
+<p>是否 Lazy 初始化：否<br>是否多线程安全：是<br>实现难度：易      </p>
+</blockquote>
+<p>描述：这种实现方式还没有被广泛采用，但这是实现单例模式的最佳方法。<strong>它更简洁，自动支持序列化机制，绝对防止多次实例化</strong>。<br>这种方式是 Effective Java 作者 Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还自动支持序列化机制，防止反序列化重新创建新的对象，绝对防止多次实例化。不过，由于 JDK1.5 之后才加入 enum 特性，用这种方式写不免让人感觉生疏，在实际工作中，也很少用。不能通过 reflection attack 来调用私有构造方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">whateverMethod</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aeon/p/10212065.html">通过反射机制、序列化反序列化破解单例模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/singleton-pattern.html">单例模式|菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.fangzhipeng.com/java/2019/09/01/sigton-design.html">方志朋-设计模式之单例模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/160842212">我给面试官讲解了单例模式后，他对我竖起了大拇指！</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><div style="margin-left: 5px  font-size:16px;">
+[1]黄文毅，Spring MVC + MyBatis快速开发与项目实战.北京：清华出版社，2019.<br>
+[2]<a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/singleton-pattern.html">https://www.runoob.com/design-pattern/singleton-pattern.html</a><br>
+[3]<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013894997/article/details/81111236">https://blog.csdn.net/u013894997/article/details/81111236</a><br>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-07-02  22:59:10</p><p><span>更新时间: </span>2022-04-21  16:19:32</p><p><span>本文链接: </span><a href="/posts/Code/1a4b62fe.html">https://wyatt.ink/posts/Code/1a4b62fe.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/1a4b62fe.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/DesignMode/">DesignMode</a></div><div class="post-nav"><a class="pre" href="/posts/Code/86818cd5.html">【转载】不可不说的Java“锁”事</a><a class="next" href="/posts/Code/181f0b61.html">JVM学习笔记(三)——类加载机制</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%89%B9%E7%82%B9"><span class="toc-text">一、特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B1%9E%E6%80%A7"><span class="toc-text">1.1 属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">二、单例模式的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%88%9B%E5%BB%BA%E7%B1%BB%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">2.1 传统的创建类的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%81%B6%E6%B1%89%E6%A8%A1%E5%BC%8F"><span class="toc-text">2.2 恶汉模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%87%92%E6%B1%89%E6%A8%A1%E5%BC%8F"><span class="toc-text">2.3 懒汉模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%8F%8C%E6%A3%80%E9%94%81-%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C%E9%94%81%EF%BC%88DCL%EF%BC%8C%E5%8D%B3-double-checked-locking%EF%BC%89"><span class="toc-text">2.4 双检锁&#x2F;双重校验锁（DCL，即 double-checked locking）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E5%8F%8C%E6%A3%80%E9%94%81-%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C%E9%94%81-%E5%A2%9E%E5%8A%A0volatile"><span class="toc-text">2.5 双检锁&#x2F;双重校验锁(增加volatile)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">2.6 静态内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%9E%9A%E4%B8%BE"><span class="toc-text">2.6 枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

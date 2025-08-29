@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>git命令 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">git命令</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">git命令</h1><div class="post-meta">April 2020</div><div class="post-content"><p>Git是一个免费的开源<strong>分布式版本控制</strong>系统，它可以快速高效地处理从小型到大型的项目。</p>
+<span id="more"></span>
+
+<h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><ul>
+<li>本地与远程库的关联与取消（可以一对多）<ul>
+<li>关联：<ul>
+<li><code>git remote add origin https:xxxx.git</code>, origin 为远程仓库别名</li>
+</ul>
+</li>
+<li>取消：<ul>
+<li><code>git remote remove origin</code></li>
+</ul>
+</li>
+<li>查看远程仓库，以及与本地仓库的关系<ul>
+<li><code>git remote show origin</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>跟踪文件<ul>
+<li>跟踪单个文件<ul>
+<li><code>git add file_name</code></li>
+</ul>
+</li>
+<li>跟踪项目文件夹中的所有文件和文件夹<ul>
+<li><code>git add .</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>提交文件<ul>
+<li><code>git commit -m &#39;commit&#39;</code></li>
+</ul>
+</li>
+<li>推送到远程仓库 <code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code><ul>
+<li>推送到origin主机对应分支<ul>
+<li><code>git push origin master</code></li>
+</ul>
+</li>
+<li>如果当前分支与多个主机存在追踪关系，那么这个时候-u选项会指定一个默认主机，这样后面就可以不加任何参数使用git push。<ul>
+<li><code>git push -u origin master</code></li>
+</ul>
+</li>
+<li>强制推送，会将远程仓库存在而本地不存在的抹除，即强制使得远程仓库内容与本地保持一样<ul>
+<li><code>git push -f origin master</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>取回远程主机某个分支的更新，再与本地的指定分支合并  <ul>
+<li><code>git pull = git fetch + git merge</code>   </li>
+<li><code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></li>
+<li>拉取远程主机origin的master分支与本地brantest分支合并<ul>
+<li><code>git pull origin master:brantest //:brantest可以省略</code> </li>
+<li>等同于&#96;git fetch origin master:brantest +</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>git merge brantest&#96;</p>
+<blockquote>
+<p>参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/of-course/p/11577318.html">https://www.cnblogs.com/of-course/p/11577318.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/JackLiu16/article/details/80952650">https://blog.csdn.net/JackLiu16/article/details/80952650</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/taohuaya/p/10761799.html">https://www.cnblogs.com/taohuaya/p/10761799.html</a></p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-04-29  16:41:10</p><p><span>更新时间: </span>2022-04-21  16:22:46</p><p><span>本文链接: </span><a href="/posts/Tools/335a5d78.html">https://wyatt.ink/posts/Tools/335a5d78.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Tools/335a5d78.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"></div><div class="post-nav"><a class="pre" href="/posts/Tools/8d229e40.html">cmd命令</a><a class="next" href="/posts/Tools/57b3646e.html">markdown基本用法</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-text">基础</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

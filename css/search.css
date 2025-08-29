@@ -1,0 +1,9 @@
+#local-search-result {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+#sidebar .widget .search-form {
+  overflow: visible;
+}

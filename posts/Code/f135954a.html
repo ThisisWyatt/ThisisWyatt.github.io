@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>数组复制 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数组复制</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">数组复制</h1><div class="post-meta">December 2020</div><div class="post-content"><!-- ![数组复制](https://i.loli.net/2020/12/05/h3a7d4mZgMJquIU.png) -->
+
+<div align = "center">
+    <img src="https://wyatt-ink-pic.oss-cn-beijing.aliyuncs.com/img/202406061548523.png" alt="数组复制" width="66%"/>
+</div>
+
+
+
+<p>在谈数组复制之前，先回忆一下浅拷贝和深拷贝：    </p>
+<ul>
+<li>浅拷贝是指<strong>将引用复制给一个变量，即只是增加一个指针指向目标内存地址</strong>     </li>
+<li>深拷贝是指<strong>用新开辟的内存空间拷贝目标对象后，让变量指向这个新的内存地址</strong></li>
+</ul>
+<span id="more"></span>
+
+<p>所以，浅拷贝后，<strong>如果新旧任一变量对应的对象发生变动时，另一变量也将变动</strong>，而深拷贝不会，因为指向的是不同的对象。   </p>
+<p>首先无论是对于基本类型数组还是对象类型数组，<strong>一般是不能够使用<code>=</code>直接复制的</strong>，因为这样只是将引用复制给变量，<strong>指向的还是同一个数组。</strong></p>
+<p>Java中对于基本类型的数组复制时，复制时因为没有对象的概念，所以不必考虑深拷贝还是浅拷贝，<strong>复制后都是两个变量指向不同的数组对象。</strong> 当然是实际上<strong>都是深拷贝</strong>。</p>
+<p>而对于对象类型的数组时，则<strong>都是浅拷贝</strong>，因为设计时，深拷贝的使用场景相对较少而且性能很差，如果的确需要深拷贝时，单独实现即可。</p>
+<blockquote>
+<p>特别的，对于String类，由于其不可变性，String类型的数组的拷贝可以理解为都是<strong>深拷贝</strong>。</p>
+</blockquote>
+<p>Java数组的复制有如下四种方式：</p>
+<h3 id="1-Object-clone"><a href="#1-Object-clone" class="headerlink" title="1. Object.clone()"></a>1. Object.clone()</h3><p>此方法是数组对象从Object类继承过来的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] arr2 = arr1.clone();</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-System-arraycopy"><a href="#2-System-arraycopy" class="headerlink" title="2. System.arraycopy()"></a>2. System.arraycopy()</h3><p>此方法内部调用的是一个native方法<br><code>public static native void arraycopy(Object src, int  srcPos,Object dest, int destPos, int length);</code><br>内部参数分别为 源数组、 拷贝开始位置、 目标数组、 粘贴开始位置、 拷贝个数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr3 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] arr4 = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line">System.arraycopy(arr3, <span class="number">0</span>, arr4, <span class="number">0</span>, arr3.length);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Arrays-copyOf"><a href="#3-Arrays-copyOf" class="headerlink" title="3. Arrays.copyOf()"></a>3. Arrays.copyOf()</h3><p>此方法内部也是调用了<code>System.arraycopy()</code>方法<br><code>public static int[] copyOf(int[] original, int newLength) &#123;&#125;</code>, 第一个参数为源数组，第二个参数为拷贝长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr5 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] arr6 = Arrays.copyOf(arr5, arr5.length);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Arrays-copyOfRange"><a href="#4-Arrays-copyOfRange" class="headerlink" title="4. Arrays.copyOfRange()"></a>4. Arrays.copyOfRange()</h3><p>内部同样也是调用了<code>System.arraycopy()</code>方法<br><code>public static int[] copyOfRange(int[] original, int from, int to)&#123;&#125;</code>,第一个参数为源数组，第二个参数为拷贝起始位置，第三个参数为拷贝结束位置（不包含）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr7 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] arr8 = Arrays.copyOfRange(arr7, <span class="number">0</span>, arr7.length); <span class="comment">//左闭右开</span></span><br></pre></td></tr></table></figure>
+
+
+
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-12-05  22:37:10</p><p><span>更新时间: </span>2024-06-06  15:50:05</p><p><span>本文链接: </span><a href="/posts/Code/f135954a.html">https://wyatt.ink/posts/Code/f135954a.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/f135954a.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/JavaSEq/">JavaSEq</a></div><div class="post-nav"><a class="pre" href="/posts/Tools/8f5fd259.html">Docker command</a><a class="next" href="/posts/Tools/341ecd43.html">Git</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Object-clone"><span class="toc-text">1. Object.clone()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-System-arraycopy"><span class="toc-text">2. System.arraycopy()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Arrays-copyOf"><span class="toc-text">3. Arrays.copyOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Arrays-copyOfRange"><span class="toc-text">4. Arrays.copyOfRange()</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

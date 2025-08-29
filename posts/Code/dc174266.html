@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>JavaSE基础 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">JavaSE基础</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">JavaSE基础</h1><div class="post-meta">April 2020</div><div class="post-content"><h3 id="JDK和JRE的区别"><a href="#JDK和JRE的区别" class="headerlink" title="JDK和JRE的区别"></a>JDK和JRE的区别</h3><ul>
+<li>JDK:Java开发工具包，提供了Java的<strong>开发环境</strong>和<strong>运行环境</strong></li>
+<li>JRE:Java运行环境，提供Java的<strong>运行环境</strong><span id="more"></span></li>
+<li><strong>JDK包含了JRE,还包含了java源码的编译器javac，以及很多java程序调试分析的工具</strong>，如果只需要运行程序，JRE即可，如果还需要写程序则需要JDK <br></li>
+</ul>
+<hr>
+<h3 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h3><ul>
+<li>Date Time API :加强对日期和时间的处理</li>
+<li>Optional类：用来处理空指针的问题</li>
+<li>Lambda表达式</li>
+<li>优化HashMap,当链表中的节点数据超过八个之后,该链表会转为红黑树来提高查询效率,从原来的O(n)到O(logn)</li>
+</ul>
+<hr>
+<h3 id="Java的多态"><a href="#Java的多态" class="headerlink" title="Java的多态"></a>Java的多态</h3><ul>
+<li>多态：一种事物的多种存在形态，比如说男人和女人都是人，人可以分为男人和女人</li>
+<li>好处：消除了类之间的<strong>耦合关系</strong>，大大提高了程序的<strong>简洁性</strong>和<strong>可拓展性</strong></li>
+<li>重写Overriding和重载Overloading<ul>
+<li>重载：以类统一的方式处理不同数据的一种手段，实质就是<strong>多个具有不同参数个数或者类型的同名函数，且返回类型可随意。</strong>（<em>动态绑定</em>）</li>
+<li>重写：父类与子类之间的多态性，<strong>实质就是子类对父类的函数进行重写定义</strong>。子类的访问权限不能小于父类的访问权限。（否则调用的时候可能无法调用）（<em>静态绑定</em>）<ul>
+<li>重写方法<strong>参数列表、返回类型</strong>必须与被重写的方法相同。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子类对象的多态性<ul>
+<li>是<strong>使用父类的引用，指向子类的对象</strong>，然后虚拟方法调用子类重写父类的方法</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="数据类型-自动拆装箱"><a href="#数据类型-自动拆装箱" class="headerlink" title="数据类型 自动拆装箱"></a>数据类型 自动拆装箱</h3><ul>
+<li>8种，<strong>int long short char float double byte boolean</strong></li>
+<li><strong>自动装箱是Java编译器在基本数据类型和对于对象包装类型中做的一个转化</strong>。比如int类型转化为Integer,double类型转为Double等，反之及时自动拆箱。</li>
+</ul>
+<hr>
+<h3 id="Java中IO流分为几种"><a href="#Java中IO流分为几种" class="headerlink" title="Java中IO流分为几种"></a>Java中IO流分为几种</h3><ul>
+<li>按照功能：<strong>输入流</strong>、<strong>输出流</strong></li>
+<li>按照类型:<ul>
+<li><strong>字节流</strong>：按<strong>8位传输以字节为单位</strong>输出输出数据</li>
+<li><strong>字符流</strong>：按照<strong>16位传输以字符为单位</strong>输出输入数据</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="值传递和引用传递"><a href="#值传递和引用传递" class="headerlink" title="值传递和引用传递"></a>值传递和引用传递</h3><ul>
+<li>值传递对于基本类型而言的，传递的是该变量的一个副本，改变副本不影响原变量</li>
+<li>引用传递对于对象类型而言的，传递的是该对象地址的一个副本，并不是原对象本身，所以对引用对象操作会改变原对象。</li>
+<li>一个对象被当做参数传递给一个方法后，此方法可改变它的属性，并返回变化后的结果，那么这里是什么传递？<ul>
+<li>值传递。<strong>Java没有引用传递</strong>，方法的参数的值是对象引用（传入的变量）的一个副本，但指向同一个对象，所以在方法中改变对象也会改变原变量的值，因为他的引用的对象改变了。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="&amp;和&amp;&amp;的区别"></a>&amp;和&amp;&amp;的区别</h3><ul>
+<li><p>&amp;：按位于，<strong>两边都要判断</strong></p>
+</li>
+<li><p>&amp;&amp;：短路与，<strong>左边的为true才会判断右边</strong></p>
+</li>
+<li><p>经常使用短路与，比如用户登陆时判定用户名不是null且不是空字符串时就只能用&amp;&amp;</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username!=<span class="literal">null</span>&amp;&amp;username.equals(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="String、StringBuffer和StringBuilder"><a href="#String、StringBuffer和StringBuilder" class="headerlink" title="String、StringBuffer和StringBuilder"></a>String、StringBuffer和StringBuilder</h3><ul>
+<li>都是可以储存和操作字符串</li>
+<li><strong>String是final类型</strong>，每次声明的都是不可变更的对象，然后将指针指向新的String对象</li>
+<li>StringBuffer，StringBuilder是可变字符继承自AbstractStringBuilder，在原有对象上进行操作</li>
+<li><strong>StringBuffer是线程安全的，StringBuilder不是线程安全的</strong>，但性能更高</li>
+<li>使用场景：<ul>
+<li><strong>并发</strong>必选StringBuffer</li>
+<li><strong>迭代</strong>必选StringBuilder</li>
+<li>普通场景使用String，避免不必要的类型转换开销</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Object若不重写hashCode()的话，hashCode()如何计算出来的？<ul>
+<li>Object的hashCode()方法是一个本地方法，<strong>该方法是直接返回对象的内存地址</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="equals和hashcode"><a href="#equals和hashcode" class="headerlink" title="equals和hashcode"></a>equals和hashcode</h3><ul>
+<li>如果两个对象的引用相同，他们之前互相调用equals()为true即两个对象相同。如果不重写hashCode（）方法，系统默认的hashCode()是本地计算对象的内存地址（经哈希算法），此时不会相同。就会产生矛盾。<blockquote>
+<p>两个对象equals相等，则它们的hashcode必须相等，反之则不一定。<br><br>两个对象&#x3D;相等，则其hashcode一定相等，反之亦然。<br><br>两个对象&#x3D;&#x3D;相等，则其hashcode一定相等，反之不一定成立。 &#x2F;&#x2F;有可能是Integer对象比较之类的<br><br>两个对象&#x3D;&#x3D;相等，则其hashcode一定相等，反之不一定成立。<br></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="和equals的区别"><a href="#和equals的区别" class="headerlink" title="&#x3D;&#x3D;和equals的区别"></a>&#x3D;&#x3D;和equals的区别</h3><ul>
+<li>&#x3D;&#x3D;<ul>
+<li><strong>基本类型：比较值是否相同</strong></li>
+<li><strong>引用类型：比较的引用是否相同</strong></li>
+</ul>
+</li>
+<li><strong>equals默认情况下是引用比较</strong>，只是<strong>很多类重载了equals()方法 (也可自定义)</strong> ，<strong>比如String、Integer等将它变为值比较</strong></li>
+</ul>
+<hr>
+<h3 id="final和static"><a href="#final和static" class="headerlink" title="final和static"></a>final和static</h3><ul>
+<li><p>final</p>
+<ul>
+<li>final可以修饰属性，<strong>方法，类，局部变量</strong>（静态变量、实例变量和局部变量）；</li>
+<li>final修饰的方法<strong>不能被子类重写</strong>，但<strong>可以被继承</strong>；</li>
+<li>final修饰的类<strong>不能被继承</strong>，没有子类，<strong>final类中的方法默认是final的</strong></li>
+<li>final<strong>不能</strong>用于修饰构造方法；</li>
+<li>对于基本类型数据，<strong>final会将值变为一个常数（创建后不能被修改）</strong></li>
+</ul>
+</li>
+<li><p>staic</p>
+<ul>
+<li>static表示“全局”或者“静态”的意思，可以用来修饰：属性，方法，代码段，内部类（静态内部类或嵌套内部类），static<strong>不可以修饰局部变量</strong></li>
+<li>static修饰的属性的初始化在编译期（类加载的时候），初始化后能改变，并且每个对象都只有一个值，主要强调它们只有一个。</li>
+<li>static修饰的属性、方法、代码段跟该类的<strong>具体对象无关</strong>，不创建对象也能调用static修饰的属性、方法等，</li>
+<li>static和“this、super”势不两立，因为this、super正好跟具体对象有关。也就是说，它不依赖类特定的实例，被类的所有实例共享。只要这个类被加载，Java虚拟机就能根据类名在运行时数据区的方法区内定找到他们。因此，static对象可以在它的任何对象创建之前访问，无需引用任何对象。</li>
+<li>用public修饰的static属性和方法本质是全局变量和全局方法，当声明它类的对象时，不生成static变量的副本，而是类的所有实例共享同一个static变量。</li>
+</ul>
+</li>
+<li><p>static final(等价于final staic)</p>
+<ul>
+<li>static修饰的属性强调它们只有一个，final修饰的属性表明是一个常数（创建后不能被修改）。static final修饰的属性表示一旦给值，就不可修改，并且可以通过类名访问。static final也可以修饰方法，表示该方法不能重写，可以在不new对象的情况下调用</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="静态代码块与普通代码块的区别"><a href="#静态代码块与普通代码块的区别" class="headerlink" title="静态代码块与普通代码块的区别"></a>静态代码块与普通代码块的区别</h3><ul>
+<li><pre><code class="java">  public class HelloB extends HelloA 
+  &#123;
+      public HelloB()&#123;
+      &#125;
+
+      &#123;
+          System.out.println(&quot;I’m B class&quot;);
+      &#125;
+
+      static&#123;
+          System.out.println(&quot;static B&quot;);
+      &#125;
+
+      public static void main(String[] args)&#123;
+          new HelloB();
+      &#125;
+  &#125;
+  class HelloA
+  &#123;
+      public HelloA()&#123;
+      &#125;
+
+      &#123;
+          System.out.println(&quot;I’m A class&quot;);
+      &#125;
+
+      static&#123;
+          System.out.println(&quot;static A&quot;);
+      &#125;
+  &#125;
+
+  //输出结果
+  static A
+  static B
+  I’m A class
+  I’m B class
+</code></pre>
+<ul>
+<li><p>执行顺序：</p>
+<ol>
+<li>父类静态代码块</li>
+<li>子类静态代码块</li>
+<li>父类普通代码块</li>
+<li>父类构造方法</li>
+<li>子类普通代码块</li>
+<li>子类构造方法</li>
+</ol>
+</li>
+<li><p>相同点</p>
+<ul>
+<li>都是在JVM加载类时且<strong>在构造方法执行之前执行</strong>，在类中都可以定义多个，一般在代码块中对一些static变量进行赋值。</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul>
+<li>静态代码块在非静态代码块之前执行(<strong>静态代码块—&gt;非静态代码块—&gt;构造方法</strong>)。<strong>静态代码块只在第一次new执行一次，之后不再执行，而非静态代码块在每new一次就执行一次</strong>。非静态代码块可在普通方法中定义(不过作用不大)；而<strong>静态</strong>代码块不行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="接口和抽象类有什么区别"><a href="#接口和抽象类有什么区别" class="headerlink" title="接口和抽象类有什么区别"></a>接口和抽象类有什么区别</h3><ul>
+<li>实现：抽象类的子类使用 <strong>extends</strong> 来继承；接口必须使用 <strong>implements</strong> 来实现接口。</li>
+<li>构造函数：抽象类可以有构造函数；<strong>接口不能有</strong>。</li>
+<li>main 方法：抽象类可以有 main 方法，并且我们能运行它；<strong>接口不能有 main 方法</strong>。</li>
+<li>实现数量：<strong>类可以实现很多个接口</strong>；但是<strong>只能继承一个抽象类</strong>。</li>
+<li>访问<strong>修饰符</strong>：接口中的方法默认使用 public 修饰；抽象类中的方法可以是任意访问修饰符。</li>
+</ul>
+<hr>
+<h3 id="String-a-”i”-和String-b-new-String-“i”-的区别"><a href="#String-a-”i”-和String-b-new-String-“i”-的区别" class="headerlink" title="String a&#x3D;”i” 和String b&#x3D;new String(“i”)的区别"></a>String a&#x3D;”i” 和String b&#x3D;new String(“i”)的区别</h3><ul>
+<li>前者，Java虚拟机将其分配到<strong>常量池</strong>中,并把”i”的内存地址赋给a,如果还有一个String a1&#x3D;”i”,也把”i”的内存地址赋给a1，即<strong>a和a1这两个引用的是同一个地址，共享一个内存。</strong></li>
+<li>后者，则会被分配到<strong>堆内存</strong>中，即新创建了一个对象，如果还有一个String b1&#x3D;new String(“i”)，相当于又创建了一个对象，然后将其地址赋给b1，<strong>虽然b和b1值相同，但是并不是一个对象。</strong></li>
+</ul>
+<hr>
+<h3 id="String类的常用方法有哪些"><a href="#String类的常用方法有哪些" class="headerlink" title="String类的常用方法有哪些"></a>String类的常用方法有哪些</h3><ul>
+<li><code>indexof()</code>   ：放回指定字符索引</li>
+<li><code>charAt()</code>    ：返回指定索引处字符</li>
+<li><code>replace()</code>   ：字符串替换</li>
+<li><code>trim()</code>      :去除字符串两端空白</li>
+<li><code>spilt()</code>     ：分割字符串，返回一个分割后的字符串数组</li>
+<li><code>getBytes()</code>  ：返回字符串的 byte 类型数组。ASCII码</li>
+<li><code>length()</code>    ：返回字符串长度。</li>
+<li><code>toLowerCase()</code>：将字符串转成小写字母。</li>
+<li><code>toUpperCase()</code>：将字符串转成大写字符。</li>
+<li>substring()   ：截取字符串。</li>
+<li>equals()      ：字符串比较。</li>
+</ul>
+<hr>
+<h3 id="Files的常用方法"><a href="#Files的常用方法" class="headerlink" title="Files的常用方法"></a>Files的常用方法</h3><ul>
+<li><code>Files.exists()</code>      ：    检测文件路径是否存在。</li>
+<li><code>Files.createFile()</code>  ：创建文件。</li>
+<li><code>Files.createDirectory()</code>：创建文件夹。</li>
+<li><code>Files.delete()</code>      ：删除一个文件或目录。</li>
+<li><code>Files.copy()</code>        ：复制文件。</li>
+<li><code>Files.move()</code>        ：移动文件。</li>
+<li><code>Files.size()</code>        ：查看文件个数。</li>
+<li><code>Files.read()</code>        ：读取文件。</li>
+<li><code>Files.write()</code>       ：写入文件。</li>
+</ul>
+<hr>
+<h3 id="java创建对象的方法"><a href="#java创建对象的方法" class="headerlink" title="java创建对象的方法"></a>java创建对象的方法</h3><ol>
+<li>用new语句创建对象，是最常见的创建对象的方法。</li>
+<li>运用反射手段,调用java.lang.Class或者java.lang.reflect.Constructor类的newInstance()实例方法。</li>
+<li>调用对象的clone()方法。</li>
+<li>运用反序列化手段，调用java.io.ObjectInputStream对象的 readObject()方法。</li>
+</ol>
+<hr>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><ul>
+<li>断言。是在软件开发过程中的一种调试方法。它对一个boolean表达式进行检验。一个正确的程序必须保证这个表达式正确，如果不正确系统则会给出警告或者退出。一般来说，<strong>asset用于保证程序最基本，最关键代码的正确性</strong>。软件发布后，通常assert检查通常是关闭的。</li>
+<li></li>
+</ul>
+<hr>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
+<li>抽象类不一定要有抽象方法</li>
+<li>抽象类不能使用final,因为被final标记的类不能被继承，但抽象类就是为了让其子类继承的</li>
+<li>抽象类和普通类的区别<ul>
+<li><strong>抽象类不能实例化</strong>，普通类可以    绝不会拿3e</li>
+<li><strong>普通类不能含有抽象方法</strong>，抽象类可以有抽象方法</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="lambda-表达式"><a href="#lambda-表达式" class="headerlink" title="lambda 表达式"></a>lambda 表达式</h3><pre><code>* 示例：
+    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 不需要参数,返回值为 5  </span></span><br><span class="line">() -&gt; <span class="number">5</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 接收一个参数(数字类型),返回其2倍的值  </span></span><br><span class="line">x -&gt; <span class="number">2</span> * x  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 接受2个参数(数字),并返回他们的差值  </span></span><br><span class="line">(x, y) -&gt; x – y  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 接收2个int型整数,返回他们的和  </span></span><br><span class="line">(<span class="type">int</span> x, <span class="type">int</span> y) -&gt; x + y  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  </span></span><br><span class="line">(String s) -&gt; System.out.print(s)</span><br></pre></td></tr></table></figure>
+</code></pre>
+<hr>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0KM4e3_zPczHh2TH2r_ncA">https://mp.weixin.qq.com/s/0KM4e3_zPczHh2TH2r_ncA</a></p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-04-29  19:38:10</p><p><span>更新时间: </span>2022-04-21  16:32:01</p><p><span>本文链接: </span><a href="/posts/Code/dc174266.html">https://wyatt.ink/posts/Code/dc174266.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/dc174266.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/JavaSE/">JavaSE</a></div><div class="post-nav"><a class="pre" href="/posts/Code/6ea65bec.html">JavaSE容器</a><a class="next" href="/posts/Tools/7de3426c.html">vim命令</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK%E5%92%8CJRE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">JDK和JRE的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java8%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">Java8新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E7%9A%84%E5%A4%9A%E6%80%81"><span class="toc-text">Java的多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1"><span class="toc-text">数据类型 自动拆装箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E4%B8%ADIO%E6%B5%81%E5%88%86%E4%B8%BA%E5%87%A0%E7%A7%8D"><span class="toc-text">Java中IO流分为几种</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92"><span class="toc-text">值传递和引用传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">&amp;和&amp;&amp;的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuffer%E5%92%8CStringBuilder"><span class="toc-text">String、StringBuffer和StringBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E5%92%8Chashcode"><span class="toc-text">equals和hashcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8Cequals%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">&#x3D;&#x3D;和equals的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final%E5%92%8Cstatic"><span class="toc-text">final和static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E6%99%AE%E9%80%9A%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">静态代码块与普通代码块的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">接口和抽象类有什么区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-a-%E2%80%9Di%E2%80%9D-%E5%92%8CString-b-new-String-%E2%80%9Ci%E2%80%9D-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">String a&#x3D;”i” 和String b&#x3D;new String(“i”)的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">String类的常用方法有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Files%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">Files的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">java创建对象的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#assert"><span class="toc-text">assert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">lambda 表达式</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

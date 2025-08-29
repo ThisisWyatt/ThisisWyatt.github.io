@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>KMP算法 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">KMP算法</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">KMP算法</h1><div class="post-meta">July 2020</div><div class="post-content"><p><img src="https://i.loli.net/2020/07/21/v6rbVX8UqOip12W.jpg" alt="kmp算法思想.png"></p>
+<h2 id="一、KMP算法简介"><a href="#一、KMP算法简介" class="headerlink" title="一、KMP算法简介"></a>一、KMP算法简介</h2><p>当目标串txt与模式串pat进行匹配时，如果txt[i]遇到不匹配的pat[j]时，<strong>不必像暴力匹配法那样每次只将pat后移一位，然后又从其第一位和txt[i+1]进行比较。</strong></p>
+<p>因为如果pat[0]~pat[j-1]有公共前后缀的话，那么txt[i]前的子串也必定存在一个公共前后缀</p>
+<p>那么，我们可以将pat右移，使得从  <strong>pat的前缀匹配txt子串的前缀，pat的后缀匹配txt子串的后缀</strong>  ，变为<strong>pat的前缀匹配txt的后缀</strong>，这样就不必每次都移动一位，然后重新开始匹配</p>
+<span id="more"></span>
+
+<blockquote>
+<p>上面提到的公共前后缀，<strong>应该为最长公共前后缀</strong>，因为公共前后缀越短，移动的越多，就有可能漏掉部分匹配，导致结果的出错。<br>ababab的前缀为{‘a’,’ab’,’aba’,’abab’,’ababa’}，后缀为{‘b’,’ab’,’bab’,’abab’,’babab’}（<strong>不能是字符串本身</strong>）<br>它的最长公共字符串即为‘abab’.长度为4       </p>
+</blockquote>
+<p><br><br></p>
+<hr>
+<p><br><br></p>
+<h2 id="二、PMT"><a href="#二、PMT" class="headerlink" title="二、PMT"></a>二、PMT</h2><p>PMT即 partial match table(部分匹配表)，<strong>当前子串（pat[0]~pat[j]）的最长公共前后缀</strong><br>例如“ababab”</p>
+<table>
+<thead>
+<tr>
+<th>char</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>pmt</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] getPMT(String s0) &#123;</span><br><span class="line">        <span class="type">char</span>[] s = s0.toCharArray();</span><br><span class="line">        <span class="type">int</span>[] pmt = <span class="keyword">new</span> <span class="title class_">int</span>[s.length];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="number">0</span>, i = <span class="number">1</span>; i &lt; s.length; ) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[flag] != s[i] &amp;&amp; flag == <span class="number">0</span>) &#123; <span class="comment">//如果s[i]和字符串的第一个不相同</span></span><br><span class="line">                pmt[i] = <span class="number">0</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[flag] == s[i]) &#123;   <span class="comment">//如果s[i]相匹配，pmt[i]为其pmt[j]+1 （j&lt;i）</span></span><br><span class="line">                pmt[i] = flag + <span class="number">1</span>;</span><br><span class="line">                i++;</span><br><span class="line">                flag++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[flag] != s[i] &amp;&amp; flag != <span class="number">0</span>) &#123; <span class="comment">//如果不匹配且flag也不为0，则将最长公共前后缀缩小一个范围</span></span><br><span class="line">                flag = pmt[flag - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pmt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<p><br><br></p>
+<h2 id="三、Next数组"><a href="#三、Next数组" class="headerlink" title="三、Next数组"></a>三、Next数组</h2><p>在当前字符pat[j]<strong>之前的子串(pat[0]~pat[j-1])的最长公共前后缀</strong>，那么我们可以将PMT数组整体右移一位且Next[0]设为-1即可得到。</p>
+<p>例如“ababab”</p>
+<table>
+<thead>
+<tr>
+<th>char</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>pmt</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>next</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="3-1如何求next数组"><a href="#3-1如何求next数组" class="headerlink" title="3.1如何求next数组"></a>3.1如何求next数组</h3><p><strong>递归</strong>得到   </p>
+<ul>
+<li><p>令next[0]&#x3D;-1    </p>
+</li>
+<li><p>如果<strong>当前位置元素</strong>s[i]的值与当前子串的最长公共前后缀（长度为K）的<strong>下一个元素</strong>s[k]相等，则最长公共前后缀长度加1，此时橙色长度+1（蓝色&#x2F;绿色长度）作为<strong>s[i+1]的next值</strong><br><img src="https://i.loli.net/2020/07/21/4fhiX8OBC9WpFLQ.jpg" alt="kmp(s[i]==s[i]).png"></p>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><p>如果不相等，则next值势必会缩小，由于长度为k的前缀、后缀（橙色部分）元素相同其相对位置也相同，那么<strong>他们各自的最长公共前后缀（朱红色）也势必相同</strong>。</p>
+</li>
+<li><p>如此，那么如果s[i]与 <strong>k缩小后的k`的下一个元素s[k&#96;]</strong> 相等，那么<strong>m(s[i])就可以和n连起来</strong>了成为最长公共前后缀。</p>
+</li>
+<li><p>所以依次缩小k的范围，直至匹配     </p>
+</li>
+<li><p>如果遇到next[k]&#x3D;-1,则表名已经到了最后一个元素，,则表示无公共前后缀,停止匹配,next值为0<br><img src="https://i.loli.net/2020/07/21/FLOnwUIMYouVhSz.jpg" alt="kmp(s[i]!=s[i]).jpg"></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] getNext(String s0) &#123;</span><br><span class="line">    <span class="type">char</span>[] s = s0.toCharArray();</span><br><span class="line">    <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[s.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始条件</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据已知的前i位推测第i+1位</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.length - <span class="number">1</span>)  <span class="comment">// 0 ~ i-2，next[i-1]是推出来的</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果k=-1,则表示无公共前后缀，next值为0（-1++）</span></span><br><span class="line">        <span class="comment">//如果当前值和前一位的最大公共前后缀的下一位相等  例：如果s[i]=s[0] 则首位相等，next值：0+1=1</span></span><br><span class="line">        <span class="keyword">if</span> (k == -<span class="number">1</span> || s[i] == s[k]) &#123;</span><br><span class="line">            <span class="comment">//k(之前的最长公共前后缀长度)+1 赋给 next[i+1] </span></span><br><span class="line">            <span class="comment">//(因为s[i]和前面的在一起，作为s[i+1]的子串的长公共前后缀长度即next[i+1])</span></span><br><span class="line">            next[++i] = ++k; </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="comment">//不能匹配上</span></span><br><span class="line">        &#123;</span><br><span class="line">            k = next[k];    <span class="comment">//将k由 （0~S）的最长前后缀 改为  （0~S）的最长前后缀的最长前后缀</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><br><br></p>
+<hr>
+<p><br><br></p>
+<h2 id="四、KMP算法"><a href="#四、KMP算法" class="headerlink" title="四、KMP算法"></a>四、KMP算法</h2><p><strong>如果txt[i]和pat[j]不匹配，则将txt[i]与pat[next[j]]进行匹配</strong></p>
+<blockquote>
+<p>设next[j]的长度为length,则pat[length]为最长公共前后缀的<strong>下一个元素</strong><br>之前的元素pat[0]~pat[length-1] (一共length个元素)依然和之前的txt的后缀相匹配。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> array;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description</span></span><br><span class="line"><span class="comment"> * Author cloudr</span></span><br><span class="line"><span class="comment"> * Date 2020/7/20 23:13</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KMP</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">haystack</span> <span class="operator">=</span> <span class="string">&quot;mississippi&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">needle</span> <span class="operator">=</span> <span class="string">&quot;issip&quot;</span>;</span><br><span class="line">        System.out.println(KMPByNext(haystack, needle));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">KMPByNext</span><span class="params">(String txt, String pat)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (pat.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span>[] next = getNext(pat);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; txt.length() &amp;&amp; j &lt; pat.length()) &#123;</span><br><span class="line">            <span class="comment">//next值为-1，txt右移动一位,pat移动整个长度（j++=0）</span></span><br><span class="line">            <span class="comment">//如果匹配成功,继续将txt,pat的下一个元素进行匹配</span></span><br><span class="line">            <span class="keyword">if</span> (j == -<span class="number">1</span> || txt.charAt(i) == pat.charAt(j)) &#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="comment">//匹配失败则回溯</span></span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j == pat.length())</span><br><span class="line">            <span class="keyword">return</span> i - j;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] getNext(String ps) &#123;</span><br><span class="line">        <span class="type">char</span>[] strKey = ps.toCharArray();</span><br><span class="line">        <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[strKey.length];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始条件</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">        next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据已知的前i位推测第j+1位</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; strKey.length - <span class="number">1</span>)  <span class="comment">// 0~ i-2 因为要整体右移一位且0位置为-1</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//如果k=-1,则表示无公共前后缀，next值为0</span></span><br><span class="line">            <span class="comment">//如果当前值和前一位的最大公共前后缀的下一位相等  例：如果s[i]=s[0] 则首位相等，next值：0+1=1</span></span><br><span class="line">            <span class="keyword">if</span> (k == -<span class="number">1</span> || strKey[i] == strKey[k]) &#123;</span><br><span class="line">                next[++i] = ++k;    <span class="comment">//k(之前的最长公共前后缀)+1 赋给 next[i+1] (因为next数组整体右移动一位)</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="comment">//不能匹配上</span></span><br><span class="line">            &#123;</span><br><span class="line">                k = next[k];    <span class="comment">//将k由 （0~S）的最长前后缀 改为  （0~S）的最长前后缀的最长前后缀</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<br> 
+
+<hr>
+<br>
+
+<h3 id="改进next数组"><a href="#改进next数组" class="headerlink" title="改进next数组"></a>改进next数组</h3><p>有txt&#x3D;”aaaabcdef”，pat&#x3D;”aaaaax”</p>
+<p><img src="https://i.loli.net/2020/07/21/KRioSTgelI64J3c.jpg" alt="next数组改进.jpg"></p>
+<p>s[i]和p[j]已经匹配失败，下一步会与p[ next[j] ]相匹配，但是如果p[j] &#x3D;&#x3D; p[ next[j] ],那么后面s[i]和p[ next[j] ]的匹配<strong>也必然会失败</strong>，所以我们<strong>将p[ next[j] ]之前的子串的最长公共前后缀</strong> next[ next[j] ]赋值给next[j]</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] getNext(String s0) &#123;</span><br><span class="line">    <span class="type">char</span>[] strKey = ps.toCharArray();</span><br><span class="line">    <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[strKey.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始条件</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    next[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据已知的前i位推测第j+1位</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; strKey.length - <span class="number">1</span>)  <span class="comment">// 0~ i-2 因为要整体右移一位且0位置为-1</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果k=-1,则表示无公共前后缀，next值为0</span></span><br><span class="line">        <span class="comment">//如果当前值和前一位的最大公共前后缀的下一位相等  例：如果s[i]=s[0] 则首位相等，next值：0+1=1</span></span><br><span class="line">        <span class="keyword">if</span> (k == -<span class="number">1</span> || strKey[i] == strKey[k]) &#123;</span><br><span class="line">            i++;    <span class="comment">//赋给 next[i+1] (因为next数组整体右移动一位)</span></span><br><span class="line">            k++;    <span class="comment">//k(之前的最长公共前后缀)+1</span></span><br><span class="line">            <span class="keyword">if</span> (strKey[i] != strKey[k]) &#123;</span><br><span class="line">                next[i] = k;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;  <span class="comment">//不能出现p[j] = p[ next[j] ]的情况，如果出现，则将next[j]的范围缩小</span></span><br><span class="line">                next[i] = next[k];      <span class="comment">//  长度为k的pat[0]~pat[k-1]缩小一个范围 长度即为next[k]  k=next[i] , 则next[i] = next[k] = next [ next[i] ]</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="comment">//不能匹配上</span></span><br><span class="line">        &#123;</span><br><span class="line">            k = next[k];    <span class="comment">//将k由 （0~S）的最长前后缀 改为  （0~S）的最长前后缀的最长前后缀</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br> 
+
+<br>
+
+
+
+
+<p><del>基于PMT数组(未成功，对于某些子串符匹配会陷入死循环，待填坑)</del></p>
+<blockquote>
+<p>String haystack &#x3D; “mississippi”;<br>String needle &#x3D; “issip”;       </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span>[] pmt = getPMT(needle);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; haystack.length() &amp;&amp; j &lt; needle.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">0</span> &amp;&amp; haystack.charAt(i) != needle.charAt(j)) &#123;</span><br><span class="line">                i++;</span><br><span class="line">                <span class="keyword">if</span> (i == haystack.length())</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (haystack.charAt(i) == needle.charAt(j)) &#123;</span><br><span class="line"></span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                j = j - pmt[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j == needle.length())</span><br><span class="line">            <span class="keyword">return</span> i - j;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<hr>
+<p><br><br></p>
+<p><strong>推荐阅读</strong>     </p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html">字符串匹配的KMP算法-阮一峰</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21923021">如何更好地理解和掌握 KMP 算法?——海纳的回答</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30974369/article/details/74276186">KMP算法 Next数组详解(【洛谷3375】KMP字符串匹配 )</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cherryljr/p/6519748.html">KMP算法的优化与详解</a></p>
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>参考</strong><br>[1]<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30974369/article/details/74276186">https://blog.csdn.net/qq_30974369/article/details/74276186</a><br>[2]<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cherryljr/p/6519748.html">https://www.cnblogs.com/cherryljr/p/6519748.html</a></p>
+<!-- shide --></div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-07-21  13:35:10</p><p><span>更新时间: </span>2022-04-22  0:21:54</p><p><span>本文链接: </span><a href="/posts/Airthmetic/2da0528d.html">https://wyatt.ink/posts/Airthmetic/2da0528d.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Airthmetic/2da0528d.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Array/">Array</a></div><div class="post-nav"><a class="pre" href="/posts/Code/27b4eaba.html">《MySql必知必会》学习笔记</a><a class="next" href="/posts/Linux/2be0aa3a.html">Liunx下安装JDK</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81KMP%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="toc-text">一、KMP算法简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81PMT"><span class="toc-text">二、PMT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Next%E6%95%B0%E7%BB%84"><span class="toc-text">三、Next数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E5%A6%82%E4%BD%95%E6%B1%82next%E6%95%B0%E7%BB%84"><span class="toc-text">3.1如何求next数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81KMP%E7%AE%97%E6%B3%95"><span class="toc-text">四、KMP算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9Bnext%E6%95%B0%E7%BB%84"><span class="toc-text">改进next数组</span></a></li></ol></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

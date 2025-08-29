@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Linux命令 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux命令</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">Linux命令</h1><div class="post-meta">November 2020</div><div class="post-content"><p>基础Linux命令</p>
+<span id="more"></span>
+
+
+<h2 id="1-使用命令"><a href="#1-使用命令" class="headerlink" title="1.使用命令"></a>1.使用命令</h2><ol>
+<li><p>详细信息 <code>ls -l</code></p>
+</li>
+<li><p>删除 rm(remove)</p>
+<ul>
+<li>删除文件 <code>rm test.txt</code></li>
+<li>删除文件夹  <code>rm -r dictory</code></li>
+</ul>
+</li>
+<li><p>移动 mv(move)</p>
+<ul>
+<li>改名 <code>mv file1.txt file2.txt</code></li>
+<li>移动 <code>mv workspace/space2/helloworld.txt workspace/space1/helloworld.txt</code></li>
+</ul>
+</li>
+<li><p>复制 cp(copy)</p>
+<ul>
+<li>cp <code>workspace/space2/helloworld.txt workspace/space1/helloworld.txt</code></li>
+</ul>
+</li>
+<li><p>显示文件信息</p>
+<ul>
+<li>显示全部 <code>cat file.txt</code></li>
+<li>查看开头部分<code>head file.txt -n 4</code></li>
+<li>查看结尾部分<code>tail file.txt -n 4</code></li>
+<li>循环读取(每隔10s)动态改变的日志文件<code>tail -f -s 10 file.log</code>,</li>
+<li>暂时少量查看<code>less file.txt </code></li>
+</ul>
+</li>
+<li><p>文件权限</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>u(author)</th>
+<th>g(group)</th>
+<th>o(other)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rw-(可读可写)</td>
+<td>r-x(可读可运行)</td>
+<td>r--(可读)</td>
+</tr>
+</tbody></table>
+<!-- gaodafeng shegnxia shegnxiashegnxi youshoushizhi -->
+<blockquote>
+<p>r : 可读<br>w : 修改、删除<br>x : execute可执行</p>
+</blockquote>
+<ul>
+<li><p>author限制可读 <code>chmod u-r file.txt</code></p>
+</li>
+<li><p>author增加可读 <code>chmod u+r file.txt</code></p>
+</li>
+<li><p>group、other限制读<code>chmod go-r file.txt</code></p>
+</li>
+<li><p>为所有用户增加可读 <code>chmod a-r file.txt</code></p>
+</li>
+<li><p>为所有用户添加所有权限 <code>chmod 777 file.txt</code></p>
+<blockquote>
+<p><code>rwx rwx rwx</code>二进制 <code>111 111 111</code>, 可利用二进制添加相应的权限</p>
+</blockquote>
+</li>
+</ul>
+<ol start="6">
+<li>设置目录权限</li>
+</ol>
+<ul>
+<li>为user添加&#x2F;user&#x2F;local&#x2F;的权限 chown -R user &#x2F;usr&#x2F;local&#x2F;</li>
+</ul>
+<ol start="7">
+<li>检索grep</li>
+</ol>
+<ul>
+<li><code>grep keyWord file.txt</code></li>
+<li>配合正则表达式<ul>
+<li><code>grep ^KeyWord file.txt</code></li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li><p>统计wc</p>
+<ul>
+<li>统计行数、单词数、字符数<code>wc file.txt</code></li>
+<li>统计byte数<code>wc -c file.txt</code></li>
+<li>统计字符数<code>wc -m file.txt</code></li>
+<li>统计最新的一行的长度<code>wc -l file.txt</code></li>
+<li>统计最长的一行的长度<code>wc -L file.txt</code></li>
+<li>统计单词个数 <code>wc -w file.txt</code></li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.linuxprobe.com/linux-cat-system.html">查看系统信息</a></p>
+<ul>
+<li><p>lsb_release -a </p>
+<blockquote>
+<p>Linux Standard Base</p>
+</blockquote>
+</li>
+<li><p>cat &#x2F;etc&#x2F;os-release</p>
+</li>
+</ul>
+</li>
+<li><p>[查看是否安装某个软件]</p>
+<ul>
+<li><p>Ubuntu <code>dpkg -s &quot;软件或包的名字&quot;</code></p>
+</li>
+<li><p>CentOS <code>rpm -qa | grep &quot;软件或者包的名字&quot;</code></p>
+<blockquote>
+<p><code>rpm: redhat package manager; -q: query; a: all</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>查看网络活动相关信息</p>
+<ul>
+<li><p><code>netstat -nptl</code> </p>
+<blockquote>
+<p>connetction、tcp、programs、listening</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  	[root@cloudr etc]# netstat -h</span><br><span class="line">      -r, --route              display routing table</span><br><span class="line">      -I, --interfaces=&lt;Iface&gt; display interface table for &lt;Iface&gt;</span><br><span class="line">      -i, --interfaces         display interface table</span><br><span class="line">      -s, --statistics         display networking statistics (like SNMP)</span><br><span class="line">   -M, --masquerade         display masqueraded connections</span><br><span class="line">  </span><br><span class="line">      -v, --verbose            be verbose //详细的</span><br><span class="line">      -e, --extend             display other/more information</span><br><span class="line">      -p, --programs           display PID/Program name for sockets	//PID、程序名</span><br><span class="line">      -o, --timers             display timers</span><br><span class="line">   -c, --continuous         continuous listing</span><br><span class="line">  </span><br><span class="line">      -l, --listening          display listening server sockets //监听中的套接口</span><br><span class="line">      -a, --all                display all sockets (default: connected)</span><br><span class="line">      -F, --fib                display Forwarding Information Base (default)</span><br><span class="line">      -C, --cache              display routing cache instead of FIB</span><br><span class="line">   -Z, --context            display SELinux security context for sockets</span><br><span class="line">	</span><br><span class="line">-t, --tcp	//tcp相关</span><br><span class="line">-u, --udp	//udp相关</span><br><span class="line">-U, --udplite</span><br><span class="line">-w, --raw 	//原始</span><br><span class="line">-x, --unix	//unix相关</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2-用户和工作组管理类命令"><a href="#2-用户和工作组管理类命令" class="headerlink" title="2.用户和工作组管理类命令"></a>2.用户和工作组管理类命令</h2><h3 id="2-1-查看用户"><a href="#2-1-查看用户" class="headerlink" title="2.1 查看用户"></a>2.1 查看用户</h3><ul>
+<li>查看用户信息命令 <code>id</code></li>
+<li>显示用户名称命令 <code>logname</code></li>
+<li>查看用户操作命令 <code>history</code><ul>
+<li>执行第几条命令 <code>!数字</code></li>
+</ul>
+</li>
+<li>查看用户所属用户组 <code>groups</code></li>
+</ul>
+<h3 id="2-2-用户组管理"><a href="#2-2-用户组管理" class="headerlink" title="2.2 用户组管理"></a>2.2 用户组管理</h3><ul>
+<li><p>查看所有用户组命令 <code>cat /etc/group</code></p>
+</li>
+<li><p>创建一个用户组命令 <code>groupadd 用户组名</code> </p>
+</li>
+<li><p>删除一个用户组命令 <code>groupdel 用户名</code></p>
+</li>
+<li><p>更改用户组名命令 <code>groupmod 新用户组名 旧用户组名</code></p>
+</li>
+<li><p>添加用户到用户组 <code>usermod -a -G groupName userName</code></p>
+<blockquote>
+<p>-a : appened，不能直接-G，否则会离开原有用户组</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-3-用户管理"><a href="#2-3-用户管理" class="headerlink" title="2.3 用户管理"></a>2.3 用户管理</h3><ul>
+<li>查看当前登录用户名命令 <code>w、who、users、whoami</code></li>
+<li>切换用户 <code>su [选项] 目标用户</code></li>
+<li>新增用户账号 <code>useradd 用户名</code></li>
+<li>删除用户账号 <code>userdel 用户名</code><ul>
+<li>强制删除<code>userdel -f 用户名</code> </li>
+<li>删除用户的同时，删除与用户相关的所有文件 <code>userdel -r 用户名</code></li>
+</ul>
+</li>
+<li>为用户设置口令 <code>passwd 用户名</code></li>
+<li>查看用户所属组命令 <code>groups 用户名</code></li>
+<li>变更用户账号信息命令 <code>usermod [选项] 用户名</code></li>
+</ul>
+<h3 id="2-4-用户权限管理"><a href="#2-4-用户权限管理" class="headerlink" title="2.4 用户权限管理"></a>2.4 用户权限管理</h3><p>普通用户如何获得root权限</p>
+<ul>
+<li><p>用户使用sudo命令并输入口令<br>在文件&#x2F;etc&#x2F;sudoers第100行后添加<code>username  ALL=(ALL)   ALL</code>后保存修改，执行命令时输入当前用户口令，即可执行root权限</p>
+</li>
+<li><p>用户组使用sudo命令并输入口令<br>在文件&#x2F;etc&#x2F;sudoers第100行后添加<code>%groupname  ALL=(ALL)   ALL</code>后保存修改，执行命令时输入当前用户口令，即可执行root权限</p>
+</li>
+<li><p>用户使用sudo命令并（不需要输入口令）<br>在文件&#x2F;etc&#x2F;sudoers第100行后添加<code>username  ALL=(ALL)   NOPASSWD: ALL</code>后保存修改，执行命令时输入当前用户口令，即可执行root权限</p>
+</li>
+<li><p>用户组使用sudo命令并（不需要输入口令）<br>在文件&#x2F;etc&#x2F;sudoers第100行后添加<code>%groupname  ALL=(ALL)   NOPASSWD: ALL</code>后保存修改，执行命令时输入当前用户口令，即可执行root权限</p>
+</li>
+<li><p>显示当前挂载在Linux系统的每个分区 df</p>
+<ul>
+<li><code>df -h</code> 将分区小转换为用户可读的形式</li>
+</ul>
+</li>
+<li><p>查看文件大小</p>
+<ul>
+<li><code>ll -h</code> h: human-readable</li>
+</ul>
+</li>
+<li><p>归档命令<code>tar</code></p>
+<ul>
+<li><p><code>tar -cvf testTar.tar * </code></p>
+<ul>
+<li>c –create: 创建一个新的归档文件</li>
+<li>v –verbose: 显示已处理文件</li>
+<li>f –file&#x3D;ARCHIVE: 指向归档文件的名字</li>
+</ul>
+</li>
+<li><p><code>tar -cvzf testTar.tar.gz *</code></p>
+<ul>
+<li>z –zip: 压缩归档文件</li>
+</ul>
+</li>
+<li><p><code>tar -xvzf testTar.tar.gz -C ~/codebase</code></p>
+<ul>
+<li>x –extract : 提取（解压）</li>
+<li>C : 指定解压目录</li>
+</ul>
+</li>
+<li><p><code>tar czvf - importantstuff/ | ssh useranme@10.0.0.123  &quot;cat &gt; /home/username/myfiles.tar.gz</code> ： 归档importantstuff目录下的文件至10.0.0.123主机的&#x2F;home&#x2F;username&#x2F;myfile.tar.gz文件</p>
+<ul>
+<li>- : 该连接符表示将数据输出到标准标准的输出设备上，这允许将归档文件文件名的详细信息推后至该命令的末尾。</li>
+<li>| : 管道，将这个未命名的、压缩的归档文件传输至远程服务器的ssh登陆	</li>
+<li>“cat &gt; &#x2F;home&#x2F;username&#x2F;myfiles.tar.gz” : 键入内容至myfiles.tar.gz(覆盖)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>文件分割 split</p>
+<ul>
+<li><code>split -4 README.md</code>: 将README.md文件每4行分割为以x开头的文件,例如xaa、xab、xac；</li>
+<li><code>split 2KB README.md REAME.md.part</code>: 将README.md分割为以REAMD.md.part开头的文件，例如REAME.md.part.aa、REAME.md.part.ab</li>
+</ul>
+</li>
+<li><p>搜索文件命令locate</p>
+<ul>
+<li><code>locate *.mp4</code><blockquote>
+<p>locate命令并非真正地文件系统本身，而是在一个已存在的索引中进行简单的搜索，但是该索引<strong>并不是实时性的</strong>，默认是在系统每次启动时自动更新，所以会因为索引过时时搜索不到文件，使用<code>updatedb</code>命令更新.<br></p>
+</blockquote>
+<blockquote>
+<p>centos安装命令<code>sudo yum install mlocate</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>指定目录下查找文件find</p>
+<ul>
+<li><code>find readme.md</code> : 在当前目录下查找文件名为readme.md的文件（默认为当前目录下查找）</li>
+<li><code>find /home/cc1/dd/ -iname &quot;*.java&quot; -exec tar -rvf javaZip.tar &#123;&#125; \;</code><ul>
+<li>-exec: shell的内建命令，在当前shell下用exec后面的命令替换掉当前执行的进程，并将老进程的环境清除掉。</li>
+<li>-iname: 忽略名字字母大小写查找</li>
+<li>{}: 告诉find命令，对于每个查找到的文件执行官exec后面的命令</li>
+<li>\;: 格式，必须</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>➱ <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zox2011/archive/2013/05/28/3103824.html">https://www.cnblogs.com/zox2011/archive/2013/05/28/3103824.html</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-11-24  23:04:33</p><p><span>更新时间: </span>2022-05-23  9:20:25</p><p><span>本文链接: </span><a href="/posts/Code/82734d8.html">https://wyatt.ink/posts/Code/82734d8.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/82734d8.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-nav"><a class="pre" href="/posts/Tools/341ecd43.html">Git</a><a class="next" href="/posts/Code/161dcf21.html">生产者消费者模型</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">1.使用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%A8%E6%88%B7%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%BB%84%E7%AE%A1%E7%90%86%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-text">2.用户和工作组管理类命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7"><span class="toc-text">2.1 查看用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">2.2 用户组管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">2.3 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text">2.4 用户权限管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

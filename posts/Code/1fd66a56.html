@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Java时间日期处理 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Java时间日期处理</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">Java时间日期处理</h1><div class="post-meta">May 2020</div><div class="post-content"><p>在java.util包中提供了Date和Calendar两个类用来封装日期和时间有关的信息</p>
+<h2 id="1-Date类"><a href="#1-Date类" class="headerlink" title="1.Date类"></a>1.Date类</h2><p>在java中日期用代表<strong>毫微秒</strong>的一个厂整数镜像存储表示，也就是日期时间相对<strong>格林威治时间</strong>（GMT)1970年1月1日零点整数过去的毫微秒数。</p>
+<span id="more"></span>
+<h3 id="1-1-日期的构造方法如下："><a href="#1-1-日期的构造方法如下：" class="headerlink" title="1.1 日期的构造方法如下："></a>1.1 日期的构造方法如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date date=<span class="keyword">new</span> <span class="title class_">Date</span>();   <span class="comment">//创建一个当前日期</span></span><br><span class="line">Date date=<span class="keyword">new</span> <span class="title class_">DateDate</span>(<span class="type">long</span> millisec)(); <span class="comment">//根据距离格林威时间的毫微秒数构造</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2常用方法"><a href="#1-2常用方法" class="headerlink" title="1.2常用方法"></a>1.2常用方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">after</span><span class="params">(Date date)</span>; <span class="comment">//如果调用Date对象包含或晚于指定的日期则返回true，否则，返回false。</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">before</span><span class="params">(Date date)</span>;<span class="comment">//如果调用Date对象包含或早于日期指定的日期返回true，否则，返回false。</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Date date)</span>;<span class="comment">//调用对象的值与日期比较。如果这两个值相等返回0。如果调用对象是早于日期返回一个负值。如果调用对象迟于日期返回正值。</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">getTime</span><span class="params">( )</span>;<span class="comment">//返回自1970年1月1日起已经过的毫秒数。</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setTime</span><span class="params">(<span class="type">long</span> time)</span>;<span class="comment">//设置所指定的时间，这表示从1970年1月1日从午夜的时间和日期以毫秒为单位经过的时间。</span></span><br><span class="line">String <span class="title function_">toString</span><span class="params">()</span>;<span class="comment">//调用Date对象转换为字符串，并返回结果。</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3时间日期格式化"><a href="#1-3时间日期格式化" class="headerlink" title="1.3时间日期格式化"></a>1.3时间日期格式化</h3><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>时代指示器</td>
+<td>AD</td>
+</tr>
+<tr>
+<td>y</td>
+<td>四位数年份</td>
+<td>2001</td>
+</tr>
+<tr>
+<td>M</td>
+<td>年中的月份</td>
+<td>July or 07</td>
+</tr>
+<tr>
+<td>d</td>
+<td>月份中日期</td>
+<td>10</td>
+</tr>
+<tr>
+<td>h</td>
+<td>时间 A.M.&#x2F;P.M.(1~12)</td>
+<td>12</td>
+</tr>
+<tr>
+<td>H</td>
+<td>天中的小时 (0~23)</td>
+<td>22</td>
+</tr>
+<tr>
+<td>m</td>
+<td>小时中的分钟</td>
+<td>30</td>
+</tr>
+<tr>
+<td>s</td>
+<td>分钟中的秒钟</td>
+<td>55</td>
+</tr>
+<tr>
+<td>S</td>
+<td>毫秒</td>
+<td>234</td>
+</tr>
+<tr>
+<td>E</td>
+<td>星期中的天</td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td>M</td>
+<td>年中的天</td>
+<td>July or 07</td>
+</tr>
+<tr>
+<td>D</td>
+<td>年中的月份</td>
+<td>360</td>
+</tr>
+<tr>
+<td>a</td>
+<td>A.M.&#x2F;P.M. 标记</td>
+<td>A.M.&#x2F;P.M. 标记</td>
+</tr>
+<tr>
+<td>w</td>
+<td>年中的星期</td>
+<td>40</td>
+</tr>
+<tr>
+<td>W</td>
+<td>月中的星期</td>
+<td>1</td>
+</tr>
+<tr>
+<td>k</td>
+<td>天中的小时(1~24)</td>
+<td>24</td>
+</tr>
+<tr>
+<td>K</td>
+<td>小时A.M.&#x2F;P.M. (0~11)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>z</td>
+<td>时区</td>
+<td>东部标准时间</td>
+</tr>
+<tr>
+<td>‘</td>
+<td>脱离文本</td>
+<td>分隔符</td>
+</tr>
+<tr>
+<td>“</td>
+<td>单引号</td>
+<td>&#96;</td>
+</tr>
+</tbody></table>
+<h3 id="1-4字符串转换日期"><a href="#1-4字符串转换日期" class="headerlink" title="1.4字符串转换日期"></a>1.4字符串转换日期</h3><p>SimpleDateFormat类有一些额外的方法，如parse()，它试图根据存储在给定SimpleDateFormat的对象的格式来转换字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">SimpleDateFormat</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;2020-05-6 23:45:48&quot;</span>;</span><br><span class="line"></span><br><span class="line">    Date date;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">        date = format.parse(str);</span><br><span class="line">        System.out.println(date); <span class="comment">//Wed May 06 23:45:48 CST 2020</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;cannot parsable using &quot;</span> + format);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-日期转字符串"><a href="#1-5-日期转字符串" class="headerlink" title="1.5 日期转字符串"></a>1.5 日期转字符串</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat format=<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&quot;</span>); <span class="comment">//yyyy 四位数年份 2019  yy两位数年份 19</span></span><br><span class="line">String dateString=format.format(date);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Calendar类"><a href="#2-Calendar类" class="headerlink" title="2.Calendar类"></a>2.Calendar类</h2><h3 id="2-1获取当前日期"><a href="#2-1获取当前日期" class="headerlink" title="2.1获取当前日期"></a>2.1获取当前日期</h3><ul>
+<li>Calendar类主要用于日期与年，月，日等整数值的转换，Calendar是一个抽象类，<strong>不能直接创建对象</strong>。但是可以使用静态方法<strong>getInstance()获得代表当前日期的日历对象</strong>。</li>
+</ul>
+<h3 id="2-1设置指定日期"><a href="#2-1设置指定日期" class="headerlink" title="2.1设置指定日期"></a>2.1设置指定日期</h3><ul>
+<li>通过该对象可以调用如下方法将日历翻到指定的一个时间：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">c</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">c.set(<span class="number">2020</span>,<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-3从日历中获取有关信息"><a href="#2-3从日历中获取有关信息" class="headerlink" title="2.3从日历中获取有关信息"></a>2.3从日历中获取有关信息</h3><ul>
+<li>要从日历中获取有关年份、月份、星期、小时等的信息，可以通过**int get(int filed)**方法得到。其中参数field的值由Calender类的静态常量决定：YEAR代表年,MONTH代表月份,DAY_OF_WEEK代表星期几，HOUR代表小时,MINUTE代表分钟,SECOND代表秒。例如：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Calendar</span> <span class="variable">c</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> c.get(Calendar.YEAR) + <span class="string">&quot;-&quot;</span> + (c.get(Calendar.MONTH) + <span class="number">1</span>) + <span class="string">&quot;-&quot;</span> + c.get(Calendar.DATE);</span><br><span class="line">System.out.println(str);    </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果<code>get(Calendar.MONTH)</code>返回值为0代表当前日历为一月份，如果返回1代表二月份，以此类推。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-4Date与Calendar互相转换"><a href="#2-4Date与Calendar互相转换" class="headerlink" title="2.4Date与Calendar互相转换"></a>2.4Date与Calendar互相转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Calendar转Date</span></span><br><span class="line"><span class="type">Calendar</span> <span class="variable">cal1</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line"><span class="type">Date</span> <span class="variable">date1</span> <span class="operator">=</span> cal1.getTime();</span><br><span class="line">System.out.println(cal1);</span><br><span class="line">System.out.println(<span class="string">&quot;-------------------------------&quot;</span>);</span><br><span class="line">System.out.println(date1);</span><br><span class="line">System.out.println(<span class="string">&quot;-------------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Date转Calendar</span></span><br><span class="line"><span class="type">Date</span> <span class="variable">date2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="type">Calendar</span> <span class="variable">cal2</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">cal2.setTime(date2);</span><br><span class="line">System.out.println(cal2);</span><br><span class="line">System.out.println(<span class="string">&quot;-------------------------------&quot;</span>);</span><br><span class="line">System.out.println(date2);</span><br><span class="line">System.out.println(date2);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">java.util.GregorianCalendar[time=1588781792372,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id=&quot;Asia/Shanghai&quot;,offset=28800000,dstSavings=0,useDaylight=false,transitions=29,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2020,MONTH=4,WEEK_OF_YEAR=19,WEEK_OF_MONTH=2,DAY_OF_MONTH=7,DAY_OF_YEAR=128,DAY_OF_WEEK=5,DAY_OF_WEEK_IN_MONTH=1,AM_PM=0,HOUR=0,HOUR_OF_DAY=0,MINUTE=16,SECOND=32,MILLISECOND=372,ZONE_OFFSET=28800000,DST_OFFSET=0]</span></span><br><span class="line"><span class="comment">-------------------------------</span></span><br><span class="line"><span class="comment">Thu May 07 00:16:32 CST 2020</span></span><br><span class="line"><span class="comment">-------------------------------</span></span><br><span class="line"><span class="comment">java.util.GregorianCalendar[time=1588781792385,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id=&quot;Asia/Shanghai&quot;,offset=28800000,dstSavings=0,useDaylight=false,transitions=29,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2020,MONTH=4,WEEK_OF_YEAR=19,WEEK_OF_MONTH=2,DAY_OF_MONTH=7,DAY_OF_YEAR=128,DAY_OF_WEEK=5,DAY_OF_WEEK_IN_MONTH=1,AM_PM=0,HOUR=0,HOUR_OF_DAY=0,MINUTE=16,SECOND=32,MILLISECOND=385,ZONE_OFFSET=28800000,DST_OFFSET=0]</span></span><br><span class="line"><span class="comment">-------------------------------</span></span><br><span class="line"><span class="comment">Thu May 07 00:16:32 CST 2020</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/coder-wzr/p/8416659.html">https://www.cnblogs.com/coder-wzr/p/8416659.html</a></p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-05-07  0:07:10</p><p><span>更新时间: </span>2022-04-21  16:19:43</p><p><span>本文链接: </span><a href="/posts/Code/1fd66a56.html">https://wyatt.ink/posts/Code/1fd66a56.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/1fd66a56.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/JavaSE/">JavaSE</a></div><div class="post-nav"><a class="pre" href="/posts/Code/1862c94.html">JVM学习笔记(一) ——Java虚拟机内存结构</a><a class="next" href="/posts/Code/b1de1f1.html">Spring Data Jpa模糊查询</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Date%E7%B1%BB"><span class="toc-text">1.Date类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%97%A5%E6%9C%9F%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">1.1 日期的构造方法如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">1.2常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">1.3时间日期格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%97%A5%E6%9C%9F"><span class="toc-text">1.4字符串转换日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%97%A5%E6%9C%9F%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">1.5 日期转字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Calendar%E7%B1%BB"><span class="toc-text">2.Calendar类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F"><span class="toc-text">2.1获取当前日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F"><span class="toc-text">2.1设置指定日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E4%BB%8E%E6%97%A5%E5%8E%86%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%9C%89%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-text">2.3从日历中获取有关信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4Date%E4%B8%8ECalendar%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2"><span class="toc-text">2.4Date与Calendar互相转换</span></a></li></ol></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

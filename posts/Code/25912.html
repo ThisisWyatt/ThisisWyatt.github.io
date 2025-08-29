@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Spring Boot基础 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Spring Boot基础</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">Spring Boot基础</h1><div class="post-meta">April 2020</div><div class="post-content"><p>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。</p>
+<span id="more"></span>
+
+
+
+<h2 id="一、注解"><a href="#一、注解" class="headerlink" title="一、注解"></a>一、注解</h2><h3 id="1-1-Spring注解"><a href="#1-1-Spring注解" class="headerlink" title="1.1 Spring注解"></a>1.1 Spring注解</h3><ul>
+<li><p>@GetMapping、@PostMapping和@RequestMapping的区别</p>
+<ul>
+<li><p>@GetMapping</p>
+<blockquote>
+<p>用于将HTTP GET请求映射到特定处理程序方法的注释。具体来说，@GetMapping是一个作为快捷方式的组合注释@RequestMapping(method &#x3D; RequestMethod.GET)。</p>
+</blockquote>
+</li>
+<li><p>@PostMapping</p>
+<blockquote>
+<p>用于将HTTP POST请求映射到特定处理程序方法的注释。具体来说，@PostMapping是一个作为快捷方式的组合注释@RequestMapping(method &#x3D; RequestMethod.POST)。</p>
+</blockquote>
+</li>
+<li><p>@RequestMapping</p>
+<blockquote>
+<p>一般情况下都是用@RequestMapping（method&#x3D;RequestMethod.），因为@<strong>RequestMapping可以直接替代以上两个注解</strong>，但是以上两个注解并不能替代@RequestMapping，@RequestMapping相当于以上两个注解的父类！ （找到相应的控制器）</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>@RestController</p>
+<ul>
+<li>@Controller和@ResponseBody的合集，表示被标记的对象是REST风格的Bean</li>
+<li>返回结果默认为字符串</li>
+</ul>
+</li>
+<li><p>@Controller </p>
+<ul>
+<li>返回结果默认为视图。负责处理由DispatcherServlet分发的请求，将用户的请求经过业务层处理之后封装成一个Mode,然后将该model递交给相应的视图层，最后返回视图层。</li>
+</ul>
+</li>
+<li><p>@ResponseBody      </p>
+<ul>
+<li>将内容或Java对象转换成响应报文的正文返回 </li>
+<li>修改了Controller的返回要求，返回结果为字符串</li>
+</ul>
+</li>
+<li><p>@RequestBody</p>
+<ul>
+<li>用于<strong>接收前端传给后端的一些非HTML页面的其他格式数据（例如XML、JSON）</strong>，是利用将请求报文中的正文自动转换为绑定给方法参数的变量字符串，而Get方法无请求体，前端不能使用Get方法提交而需要使用Post方法提交</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tomingto/p/11377138.html">@RequestParam</a> 将请求中的值赋给被注解的方法参数</p>
+<blockquote>
+<p><code>https://www.notecc.ink/username?q=123</code><br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;query&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">query</span><span class="params">(<span class="meta">@RequestParam(value = &quot;q&quot;, required = false, defaultValue = &quot;1234567&quot;)</span> String q)</span> &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mav</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    mav.addObject(<span class="string">&quot;q&quot;</span>, q);</span><br><span class="line">    mav.setViewName(<span class="string">&quot;blogQuery&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mav;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/returnView&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(<span class="meta">@RequestParam</span> String name, Model model)</span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29115715/article/details/80090403">@PathVariable</a></p>
+<ul>
+<li>可以将 <strong>URL中占位符参数</strong>绑定到控制器处理方法的入参中：URL 中的 {xxx} 占位符可以通过@PathVariable(“xxx“) 绑定到操作方法的入参中。<blockquote>
+<p><code>https://www.note.ink/username/2</code><br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> ModelAndView <span class="title function_">show</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="type">ModelAndView</span> <span class="variable">mav</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>();</span><br><span class="line">    mav.addObject(<span class="string">&quot;id&quot;</span>, id);</span><br><span class="line">    mav.setViewName(<span class="string">&quot;blog&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> mav;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>@MatrixVariable： 用于获取复杂URI</p>
+</li>
+<li><p>@Autowired 和 @Resource</p>
+<blockquote>
+<p>@Autowired默认按照<strong>byType</strong>方式进行bean匹配，@Resource默认按照<strong>byName</strong>方式进行bean匹配</p>
+</blockquote>
+<blockquote>
+<p>@Autowired是Spring的注解，@Resource是J2EE的注解，根据导入注解的包名就可以知道。</p>
+</blockquote>
+<blockquote>
+<p>Spring属于第三方的，J2EE是Java自己的东西。因此，建议使用@Resource注解，以减少代码和Spring之间的耦合。</p>
+</blockquote>
+</li>
+<li><p>@Service</p>
+<ul>
+<li>service标注<strong>业务层组件</strong>,这个注解是写在类上面的，标注将这个类交给Spring容器管理，spring容器要为他创建对象</li>
+</ul>
+</li>
+<li><p>@Scope 用来定义Bean的作用域 </p>
+<ul>
+<li>singleton： 全局有且仅有一个实例</li>
+<li>prototype： 每次获取时都会有一个新的实例</li>
+<li>request：针对每一次HTTP请求都会产生一个新的Bean</li>
+<li>session：针对每一次HTTP请求都会产生一个新的Bean，但该Bean只在当前HTTP session中有效</li>
+<li>global session：与session类似，不过它仅仅只在基于Porlet的Web应用中才有效 <blockquote>
+<p>JSR 330标准中默认Bean的作用域<strong>默认为singleton</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>@ExceptionHandler 统一处理方法抛出的异常</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局统一处理NumberFormatException异常</span></span><br><span class="line"><span class="meta">@ExceptionHandler(NumberFormatException.class)</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleException</span><span class="params">(Exception e)</span>&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="1-2-Spring-Boot注解"><a href="#1-2-Spring-Boot注解" class="headerlink" title="1.2 Spring Boot注解"></a>1.2 Spring Boot注解</h3><ul>
+<li><p>@Value</p>
+<ul>
+<li>注入Spring Boot配置的文件application.properties中配置的属性值</li>
+</ul>
+</li>
+<li><p>@ConfigurationProperties(prefix&#x3D;”server”)</p>
+<ul>
+<li>获取配置文件中内容，prefix为其前缀，例如获取serverProperties.properties中内容，prefix为server</li>
+</ul>
+</li>
+<li><p>@PropertySource(“classpath:serverProperties.properties”)</p>
+<ul>
+<li>加载配置类</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-JPA注解"><a href="#1-3-JPA注解" class="headerlink" title="1.3 JPA注解"></a>1.3 JPA注解</h3><ul>
+<li><p>@Entity</p>
+<ul>
+<li>表明被标注的类是一个实体类</li>
+</ul>
+</li>
+<li><p>@Table</p>
+<ul>
+<li>指出实体类对应的表名</li>
+</ul>
+</li>
+<li><p>@Id</p>
+<ul>
+<li>声明实体类对应的属性映射为数据库的主键列</li>
+</ul>
+</li>
+<li><p>@GenerateValue</p>
+<ul>
+<li>用于标注主键的生成策略<ul>
+<li><code>@GeneratedValue(strategy = GenerationType.IDENTITY)</code> 自增</li>
+<li><code>@GeneratedValue(strategy = GenerationType.SEQUENCE)</code> 通过序列产生主键</li>
+<li><code>@GeneratedValue(strategy = GenerationType.AUTO)</code> 自动选择主键生成策略，以适应不同的数据库移植。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lovetl/p/11685843.html">@Column</a></p>
+<ul>
+<li>属性<ul>
+<li>name属性定义了被标注字段在数据库表中所对应字段的名称；</li>
+<li>unique属性表示该字段是否为唯一标识，默认为false。如果表中有一个字段需要唯一标识，则既可以使用该标记，也可以使用@Table标记中的@UniqueConstraint。</li>
+<li>nullable属性表示该字段是否可以为null值，默认为true。</li>
+<li>insertable属性表示在使用“INSERT”脚本插入数据时，是否需要插入该字段的值。</li>
+<li>updatable属性表示在使用“UPDATE”脚本插入数据时，是否需要更新该字段的值。insertable和updatable属性一般多用于只读的属性，例如主键和外键等。这些字段的值通常是自动生成的。</li>
+<li>columnDefinition属性表示创建表时，该字段创建的SQL语句，一般用于通过Entity生成表定义时使用。（也就是说，如果DB中表已经建好，该属性没有必要使用。）</li>
+<li>table属性定义了包含当前字段的表名。</li>
+<li>length属性表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。</li>
+<li>precision属性和scale属性表示精度，当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@Modifying</p>
+<ul>
+<li>在@Query注解中编写JPQL实现DELETE和UPDATE操作的时候必须加上@modifying注解，以通知Spring Data 这是一个DELETE或UPDATE操作。</li>
+<li>UPDATE或者DELETE操作需要使用事务，此时需要 定义Service层，在Service层的方法上添加事务操作。</li>
+<li>注意JPQL不支持INSERT操作。　</li>
+<li><del><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhaobingqing/p/6864223.html">https://www.cnblogs.com/zhaobingqing/p/6864223.html</a></del></li>
+</ul>
+</li>
+</ul>
+<h2 id="二、开发起步"><a href="#二、开发起步" class="headerlink" title="二、开发起步"></a>二、开发起步</h2><h3 id="2-1-多环境配置"><a href="#2-1-多环境配置" class="headerlink" title="2.1 多环境配置"></a>2.1 多环境配置</h3><h4 id="2-1-1-增加多个配置文件"><a href="#2-1-1-增加多个配置文件" class="headerlink" title="2.1.1 增加多个配置文件"></a>2.1.1 增加多个配置文件</h4><ul>
+<li>测试环境 application-test.yml </li>
+<li>开发环境 application-dev.yml </li>
+<li>生产环境 application-prod.yml</li>
+</ul>
+<h4 id="2-2-2-运行"><a href="#2-2-2-运行" class="headerlink" title="2.2.2 运行"></a>2.2.2 运行</h4><ul>
+<li><code>$ java -jar demo.jar --spring.profiles.active=test</code></li>
+<li><code>$ java -jar demo.jar --spring.profiles.active=dev</code></li>
+<li><code>$ java -jar demo.jar --spring.profiles.active=prod</code></li>
+</ul>
+<h3 id="2-2-自定义配置类"><a href="#2-2-自定义配置类" class="headerlink" title="2.2 自定义配置类"></a>2.2 自定义配置类</h3><p>当要配置的自定义属性比较多时，可以考虑自定义一个配置类。    </p>
+<ul>
+<li>在<code>src/main/resources</code>目录下定义配置文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=8888</span><br><span class="line">server.servlet.context-path=/demo</span><br></pre></td></tr></table></figure></li>
+<li>编写自定义配置类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@PropertySource(&quot;classpath:serverProperties.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServerProperties</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;server.port&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String port;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;server.servlet.context-path&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String contextPath;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getContextPath</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> contextPath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setContextPath</span><span class="params">(String contextPath)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.contextPath = contextPath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getPort</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPort</span><span class="params">(String port)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+
+<blockquote>
+<p>参考：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41973208/article/details/85008962">https://blog.csdn.net/qq_41973208/article/details/85008962</a> <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lovetl/p/11685843.html">https://www.cnblogs.com/lovetl/p/11685843.html</a><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhaobingqing/p/6864223.html">https://www.cnblogs.com/zhaobingqing/p/6864223.html</a><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;吴胜.Spring Boot开发实战. 北京: 清华大学出版社, 2019.</p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-04-22  2:40:10</p><p><span>更新时间: </span>2022-04-21  16:20:31</p><p><span>本文链接: </span><a href="/posts/Code/25912.html">https://wyatt.ink/posts/Code/25912.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Code/25912.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/JavaWeb/">JavaWeb</a></div><div class="post-nav"><a class="pre" href="/posts/Airthmetic/61237.html">排序算法</a><a class="next" href="/posts/Code/30225.html">Hibernate基础</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B3%A8%E8%A7%A3"><span class="toc-text">一、注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Spring%E6%B3%A8%E8%A7%A3"><span class="toc-text">1.1 Spring注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Spring-Boot%E6%B3%A8%E8%A7%A3"><span class="toc-text">1.2 Spring Boot注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-JPA%E6%B3%A8%E8%A7%A3"><span class="toc-text">1.3 JPA注解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%8F%91%E8%B5%B7%E6%AD%A5"><span class="toc-text">二、开发起步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">2.1 多环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%A2%9E%E5%8A%A0%E5%A4%9A%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2.1.1 增加多个配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E8%BF%90%E8%A1%8C"><span class="toc-text">2.2.2 运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-text">2.2 自定义配置类</span></a></li></ol></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>

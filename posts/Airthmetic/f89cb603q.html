@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>红黑树 | Tie × Wiki</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="/css/prettify.css"><script type="text/javascript" src="//fastly.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//fastly.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '');
+</script><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">红黑树</h1><a id="logo" href="/.">Tie × Wiki</a><p class="description">Later equals never</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/gallery/"><i class="fa fa-picture-o"> 相册</i></a><a href="/about/"><i class="fa fa-user-secret"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"> <h1 class="post-title">红黑树</h1><div class="post-meta">August 2020</div><div class="post-content"><div style="width: 95%">
+![左右旋转](https://cdn.jsdelivr.net/gh/cloud-r/GitakRepository/static_files/blog/img/左右旋.png)
+</div>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tE411f7tP?p=3">程序员司马讲解二叉树(B站)</a><br><strong>遍历-&gt;二分法-&gt;二叉树-&gt;二叉查找树-&gt;红黑树(自平衡的二叉查找树)-&gt;二叉平衡树(理想状态)</strong></p>
+<h2 id="红黑树性质"><a href="#红黑树性质" class="headerlink" title="红黑树性质"></a>红黑树性质</h2><ul>
+<li>每一个结点不是红色就是黑色</li>
+<li>红色结点不能够连接在一起</li>
+<li>根节点必须为黑色</li>
+<li>叶子结点均为黑色<blockquote>
+<p>注意最后一个是NULL,所以表面上叶子结点为红色，但其实是没有问题的</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="红黑树的变换规则"><a href="#红黑树的变换规则" class="headerlink" title="红黑树的变换规则"></a>红黑树的变换规则</h2><p>所有插入的点默认都是红色，否则全黑色就是普通二叉树了，下一步也就无法按照规律变换以达到自平衡。</p>
+<ol>
+<li>变色规则<br> 当前结点是红色，父结点是红色，且它的叔叔结点也是红色(<strong>自红，父红，叔叔红</strong>)<ol>
+<li>把父结点设为黑色    </li>
+<li>把叔叔结点设为黑色   </li>
+<li>把祖父结点设为红色         </li>
+<li>把指针结点定义到祖父结点设为当前要操作的，分析的点变换的规则（此时可能是要左右旋）</li>
+</ol>
+</li>
+<li>左旋</li>
+</ol>
+<ul>
+<li>当前结点是右子树，且是红色      </li>
+<li>父结点是红色     </li>
+<li>叔叔结点是黑色（<strong>右红，父红，叔叔黑</strong>）<br>以<strong>父结点</strong>左旋</li>
+</ul>
+<ol start="3">
+<li>右旋<br>当前节结点是左子树，红色，父结点红色，叔叔黑色。（<strong>左红，父红，叔叔黑</strong>）</li>
+</ol>
+<ul>
+<li>把父结点变为黑色    </li>
+<li>把祖父变为红色    </li>
+<li>以<strong>祖父为结点</strong>右旋</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><div style="margin-left: 5px  font-size:16px;">
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tE411f7tP?p=3">https://www.bilibili.com/video/BV1tE411f7tP?p=3</a><br>
+</div>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>发布时间: </span>2020-08-01  22:55:10</p><p><span>更新时间: </span>2022-05-11  21:39:43</p><p><span>本文链接: </span><a href="/posts/Airthmetic/f89cb603q.html">https://wyatt.ink/posts/Airthmetic/f89cb603q.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://wyatt.ink/posts/Airthmetic/f89cb603q.html"></i></span></p><p><span>版权声明: </span>本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！</p></div><br><div class="tags"><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post-nav"><a class="pre" href="/posts/Code/168b5985.html">观察者模式</a><a class="next" href="/posts/Code/27b4eaba.html">《MySql必知必会》学习笔记</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E6%80%A7%E8%B4%A8"><span class="toc-text">红黑树性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%8F%98%E6%8D%A2%E8%A7%84%E5%88%99"><span class="toc-text">红黑树的变换规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2025 <a href="/." rel="nofollow">Wyatt .</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/ThisisWyatt/hexo-maupassant"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.2" async></script><link rel="stylesheet" type="text/css" href="//fastly.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.2"><script type="text/javascript" src="/js/search.js?v=1.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="255,193,7" opacity="0.7" zIndex="-1" count="120" src="//fastly.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script><script type="text/javascript" src="/js/jquery.justifiedGallery.min.js"></script><script type="text/javascript" src="/js/lazyload.min.js"></script><script type="text/javascript" src="/js/albums.js"></script><script type="text/javascript" src="/js/prettify.js?v=1.0.2"></script><script>$(document).ready(function(){
+$('pre').addClass('prettyprint');
+//- $('code').addClass('prettyprint');
+prettyPrint();
+})</script><script type="text/javascript" src="/js/toc.js?v=1.0.2" async></script></div></body></html>
