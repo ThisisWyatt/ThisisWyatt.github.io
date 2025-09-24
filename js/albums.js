@@ -8,3 +8,10 @@ $('#gallery').justifiedGallery({
 $("img.lazy").lazyload({
   effect: "fadeIn"
 });
+
+
+if ($.fancybox) {
+  $('[data-fancybox]').fancybox({
+    protect: true
+  });
+}
