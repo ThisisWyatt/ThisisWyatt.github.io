@@ -6,10 +6,10 @@ $('#gallery').justifiedGallery({
   waitThumbnailsLoad: false,  // 不等待缩略图加载完成
 });
 
-// lazyload
-// $("img.lazy").lazyload({
-//   effect: "fadeIn"
-// });
+lazyload
+$("img.lazy").lazyload({
+  effect: "fadeIn"
+});
 
 
 if ($.fancybox) {
