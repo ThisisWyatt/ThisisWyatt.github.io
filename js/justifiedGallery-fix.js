@@ -34,10 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function initJustifiedGallery() {
     const gallery = document.getElementById('gallery');
     if (gallery) {
-        // 添加延迟确保样式已应用
         setTimeout(() => {
             // 初始化 justifiedGallery
-            // 具体初始化代码依赖于你使用的 justifiedGallery 版本
+            $(gallery).justifiedGallery({
+                // 你的配置选项
+            });
+            
+            // 添加加载完成类
+            gallery.classList.add('loaded');
         }, 100);
     }
 }

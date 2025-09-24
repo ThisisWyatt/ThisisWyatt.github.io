@@ -3,6 +3,9 @@
   position: relative;
   overflow: hidden;
 }
+.justified-gallery > loaded {
+  opacity: 1;
+}
 .justified-gallery > a, .justified-gallery > div, .justified-gallery > figure {
   position: absolute;
   display: inline-block;
