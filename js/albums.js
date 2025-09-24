@@ -6,7 +6,7 @@ $('#gallery').justifiedGallery({
   waitThumbnailsLoad: false,  // 不等待缩略图加载完成
 });
 
-lazyload
+// lazyload
 $("img.lazy").lazyload({
   effect: "fadeIn"
 });
