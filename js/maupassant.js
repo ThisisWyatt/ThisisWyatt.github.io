@@ -1,6 +1,6 @@
 // justifiedGallery
 $('#gallery').justifiedGallery({
-  rowHeight: 200,
+  rowHeight: 136,
   margins: 5
 });
 
