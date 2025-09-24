@@ -12,8 +12,9 @@ $("img.lazy").lazyload({
 });
 
 
-// if ($.fancybox) {
-//   $('[data-fancybox]').fancybox({
-//     protect: true
-//   });
-// }
+if ($.fancybox) {
+  $('[data-fancybox]').fancybox({
+    protect: true,
+    preload: 1
+  });
+}
