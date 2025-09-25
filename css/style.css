@@ -2254,7 +2254,7 @@ img.img-topic {
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-  color: white;
+  color: rgb(216, 131, 11);
 }
 .justified-gallery > a > .caption.caption-visible, .justified-gallery > div > .caption.caption-visible, .justified-gallery > figure > .caption.caption-visible {
   display: initial;
