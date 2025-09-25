@@ -2,7 +2,6 @@
 $('#gallery').justifiedGallery({
   rowHeight: 136,
   margins: 3,
-  
 });
 
 // lazyload
